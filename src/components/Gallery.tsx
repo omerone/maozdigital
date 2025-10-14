@@ -1,0 +1,103 @@
+'use client';
+
+import { useState } from 'react';
+
+export default function Gallery() {
+  const [selectedImage, setSelectedImage] = useState<{ src: string; title: string } | null>(null);
+
+  const results = [
+    {
+      title: "Engagements",
+      value: "2.5M+",
+      description: "אינטראקציות חודשיות",
+      image: "/results-1.jpeg",
+      color: "from-blue-500 to-blue-600"
+    },
+    {
+      title: "Reach",
+      value: "850K+",
+      description: "הגעה חודשית",
+      image: "/results-2.jpeg",
+      color: "from-purple-500 to-purple-600"
+    },
+    {
+      title: "Conversions",
+      value: "15K+",
+      description: "המרות חודשיות",
+      image: "/results-3.jpeg",
+      color: "from-pink-500 to-pink-600"
+    }
+  ];
+
+  return (
+    <section id="results" className="py-20 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            התוצאות שלנו מדברות
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            נתונים אמיתיים שמראים את ההצלחה שלנו בעזרה לעסקים לצמוח ולהצליח
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {results.map((result, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+            >
+              <div className="relative">
+                <img
+                  src={result.image}
+                  alt={result.title}
+                  className="w-full h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity"
+                  onClick={() => setSelectedImage({ src: result.image, title: result.title })}
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                  <div className="text-white text-center">
+                    <h3 className="text-xl font-bold mb-2">{result.title}</h3>
+                    <div className="text-3xl font-bold mb-2">{result.value}</div>
+                    <p className="text-sm opacity-90">{result.description}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Full Screen Image Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="relative max-w-4xl max-h-full">
+            <img
+              src={selectedImage.src}
+              alt={selectedImage.title}
+              className="max-w-full max-h-full object-contain rounded-lg"
+              onClick={(e) => e.stopPropagation()}
+            />
+            
+            {/* Close button */}
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 bg-black bg-opacity-50 text-white rounded-full p-2 hover:bg-opacity-75 transition-all"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Image title */}
+            <div className="absolute bottom-4 left-4 right-4 bg-black bg-opacity-50 text-white p-3 rounded-lg">
+              <h3 className="text-lg font-semibold text-center">{selectedImage.title}</h3>
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}

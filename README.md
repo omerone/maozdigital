@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# אתר שירותי דיגיטל
 
-## Getting Started
+אתר מקצועי לשירותי דיגיטל הכולל בניית אתרים, שיווק בגוגל ושיווק ממומן ברשתות חברתיות.
 
-First, run the development server:
+## תכונות האתר
+
+- **עיצוב מודרני ורספונסיבי** - מתאים לכל המכשירים
+- **סקציית שירותים מפורטת** - 3 שירותים עיקריים עם הסברים מפורטים
+- **גלריית תוצאות** - צילומי מסך של עלויות ותוצאות אמיתיות
+- **טופס יצירת קשר מתקדם** - עם שדות מותאמים אישית
+- **ניווט חלק** - עם תפריט נייד וקישורי מעבר מהירים
+- **כפתור חזרה למעלה** - לנוחות המשתמש
+
+## השירותים המוצגים
+
+1. **בניית אתרים + שיווק בגוגל**
+   - עיצוב רספונסיבי ומקצועי
+   - אופטימיזציה למנועי חיפוש (SEO)
+   - שיווק בגוגל Ads
+
+2. **שיווק ממומן במטא (פייסבוק + אינסטגרם)**
+   - קמפיינים ממוקדים
+   - ניהול תקציב חכם
+   - ניתוח ביצועים בזמן אמת
+
+3. **שיווק ממומן בטיקטוק**
+   - קמפיינים ויראליים
+   - יצירת תוכן איכותי
+   - הגעה לקהל צעיר
+
+## התקנה והפעלה
 
 ```bash
+# התקנת התלויות
+npm install
+
+# הפעלת שרת הפיתוח
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# בניית האתר לפרודקשן
+npm run build
+
+# הפעלת האתר בפרודקשן
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+האתר יהיה זמין בכתובת: `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## טכנולוגיות
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Next.js 14** - Framework React מתקדם
+- **TypeScript** - תמיכה מלאה בטיפוסים
+- **Tailwind CSS** - עיצוב מהיר וגמיש
+- **Responsive Design** - מותאם לכל המכשירים
 
-## Learn More
+## התאמה אישית
 
-To learn more about Next.js, take a look at the following resources:
+### הוספת תמונות אמיתיות לגלריה
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. העלה את התמונות שלך לתיקייה `public/images/`
+2. עדכן את הקובץ `src/components/Gallery.tsx`
+3. החלף את `image: "/api/placeholder/600/400"` בנתיב התמונה האמיתית
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### עדכון פרטי יצירת קשר
 
-## Deploy on Vercel
+עדכן את הקובץ `src/components/Footer.tsx` עם הפרטים שלך:
+- אימייל
+- טלפון
+- כתובת
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### עדכון תוכן השירותים
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+עדכן את הקובץ `src/components/Services.tsx` עם:
+- תיאורי השירותים שלך
+- רשימת התכונות
+- מחירים (אם רלוונטי)
+
+### התאמת הטופס
+
+עדכן את הקובץ `src/components/ContactForm.tsx` עם:
+- רשימת השירותים שלך
+- רמות תקציב
+- הוספת שדות נוספים אם נדרש
+
+## SEO ומיטוב
+
+האתר כולל:
+- Meta tags מותאמים לעברית
+- כותרות מובנות (H1, H2, H3)
+- Alt tags לתמונות
+- תמיכה ב-RTL (עברית)
+- מהירות טעינה מיטבית
+
+## תמיכה
+
+לשאלות או בעיות, צור קשר דרך הטופס באתר או במייל: info@digitalservices.co.il
