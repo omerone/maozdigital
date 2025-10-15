@@ -11,6 +11,7 @@ import RatingSystem from '@/components/RatingSystem';
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Auto-deploy test - {new Date().toISOString()} */}
       <Header />
       <main>
         <Hero />
