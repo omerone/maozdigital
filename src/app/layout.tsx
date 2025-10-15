@@ -15,6 +15,23 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Maoz Digital - בניית אתרים ושיווק מקצועי | עומר מעוז",
   description: "בניית אתרים מקצועיים, שיווק בגוגל, שיווק ממומן במטא וטיקטוק. פתרונות דיגיטל מתקדמים לעסק שלך עם עומר מעוז",
+  metadataBase: new URL('https://maozdigital.com'),
+  openGraph: {
+    title: "Maoz Digital - בניית אתרים ושיווק מקצועי | עומר מעוז",
+    description: "בניית אתרים מקצועיים, שיווק בגוגל, שיווק ממומן במטא וטיקטוק. פתרונות דיגיטל מתקדמים לעסק שלך עם עומר מעוז",
+    url: 'https://maozdigital.com',
+    siteName: 'Maoz Digital',
+    locale: 'he_IL',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Maoz Digital - בניית אתרים ושיווק מקצועי | עומר מעוז",
+    description: "בניית אתרים מקצועיים, שיווק בגוגל, שיווק ממומן במטא וטיקטוק. פתרונות דיגיטל מתקדמים לעסק שלך עם עומר מעוז",
+  },
+  alternates: {
+    canonical: 'https://maozdigital.com',
+  },
 };
 
 export const viewport = {

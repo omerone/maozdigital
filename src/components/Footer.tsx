@@ -11,7 +11,7 @@ export default function Footer() {
               <div className="w-8 h-8 mr-6 relative">
                 <Image
                   src="/logo.png"
-                  alt="מעוז דיגיטל"
+                  alt="מעוז image.pngיגיטל"
                   fill
                   className="object-contain"
                 />
