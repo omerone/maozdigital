@@ -86,12 +86,16 @@ export default function ResultsGallery() {
     { key: 'campaigns', label: 'קמפיינים', count: images.filter(img => img.category === 'campaigns').length }
   ];
 
-  // Close modal with Escape key
+  // Close modal with Escape key and listen for custom events
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setSelectedImage(null);
       }
+    };
+
+    const handleOpenGallery = () => {
+      setIsOpen(true);
     };
 
     if (selectedImage) {
@@ -101,8 +105,12 @@ export default function ResultsGallery() {
       document.body.style.overflow = 'unset';
     }
 
+    // Listen for custom event from Header
+    window.addEventListener('openResultsGallery', handleOpenGallery);
+
     return () => {
       document.removeEventListener('keydown', handleEscape);
+      window.removeEventListener('openResultsGallery', handleOpenGallery);
       document.body.style.overflow = 'unset';
     };
   }, [selectedImage]);

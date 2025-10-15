@@ -7,6 +7,7 @@ import SimpleContactForm from '@/components/SimpleContactForm';
 import ScrollToTop from '@/components/ScrollToTop';
 import MetaPixel from '@/components/MetaPixel';
 import RatingSystem from '@/components/RatingSystem';
+import ResultsGallery from '@/components/ResultsGallery';
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
       <Footer />
       <ScrollToTop />
       <MetaPixel />
+      <ResultsGallery />
     </div>
   );
 }

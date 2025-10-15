@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import ResultsGallery from './ResultsGallery';
 
 export default function Footer() {
   return (
@@ -34,11 +33,6 @@ export default function Footer() {
               <li>שיווק ממומן במטא</li>
               <li>שיווק ממומן בטיקטוק</li>
             </ul>
-            
-            {/* Results Gallery Button */}
-            <div className="mt-6 flex justify-center">
-              <ResultsGallery />
-            </div>
           </div>
 
           {/* Contact */}

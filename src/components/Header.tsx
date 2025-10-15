@@ -79,12 +79,16 @@ export default function Header() {
               >
                 שירותים
               </a>
-              <a
-                href="#gallery"
+              <button
+                onClick={() => {
+                  // This will be handled by the ResultsGallery component
+                  const event = new CustomEvent('openResultsGallery');
+                  window.dispatchEvent(event);
+                }}
                 className="text-gray-900 hover:text-blue-600 px-4 py-2 rounded-md text-sm font-medium transition-colors"
               >
                 תוצאות
-              </a>
+              </button>
               <a
                 href="#contact"
                 className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md text-sm font-medium transition-colors"
@@ -112,13 +116,16 @@ export default function Header() {
             >
               שירותים
             </a>
-            <a
-              href="#gallery"
-              className="text-gray-900 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => setIsMenuOpen(false)}
+            <button
+              onClick={() => {
+                setIsMenuOpen(false);
+                const event = new CustomEvent('openResultsGallery');
+                window.dispatchEvent(event);
+              }}
+              className="text-gray-900 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium w-full text-right"
             >
               תוצאות
-            </a>
+            </button>
             <a
               href="#contact"
               className="bg-blue-600 hover:bg-blue-700 text-white block px-3 py-2 rounded-md text-base font-medium"
