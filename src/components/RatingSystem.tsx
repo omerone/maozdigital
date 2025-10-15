@@ -119,7 +119,7 @@ export default function RatingSystem() {
             דירוגי לקוחות
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            כל לקוח יכול לדרג פעם אחת בלבד - דירוגים אמיתיים ואמינים
+            דירוגים אמיתיים ואמינים מלקוחות מרוצים
           </p>
         </div>
 
@@ -172,7 +172,7 @@ export default function RatingSystem() {
 
               {submitStatus === 'duplicate' && (
                 <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded mb-6 text-center">
-                  כבר קיים דירוג עם מספר הטלפון הזה. כל לקוח יכול לדרג פעם אחת בלבד.
+                  כבר קיים דירוג עם מספר הטלפון הזה.
                 </div>
               )}
 

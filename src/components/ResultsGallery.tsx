@@ -110,7 +110,10 @@ export default function ResultsGallery() {
   if (!isOpen) {
     return (
       <button
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          console.log('Opening gallery...');
+          setIsOpen(true);
+        }}
         className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
       >
         🎯 צפה בתוצאות שלנו
@@ -143,7 +146,7 @@ export default function ResultsGallery() {
             {categories.map((category) => (
               <button
                 key={category.key}
-                onClick={() => setSelectedCategory(category.key as any)}
+                onClick={() => setSelectedCategory(category.key as 'all' | 'results' | 'websites' | 'campaigns')}
                 className={`px-4 py-2 rounded-full font-medium transition-all ${
                   selectedCategory === category.key
                     ? 'bg-white text-black'

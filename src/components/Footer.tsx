@@ -20,7 +20,8 @@ export default function Footer() {
               <h3 className="text-lg font-semibold">Maoz Digital</h3>
             </div>
             <p className="text-gray-300 mb-4 text-center">
-              פתרונות דיגיטל מקצועיים לעסק שלך עם עומר מעוז. בניית אתרים, שיווק בגוגל ושיווק ממומן ברשתות חברתיות.
+              בניית אתרים מקצועיים, שיווק בגוגל, שיווק ממומן במטא וטיקטוק<br />
+              פתרונות דיגיטל מתקדמים לעסק שלך עם מעוז דיגיטל
             </p>
           </div>
 
