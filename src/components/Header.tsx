@@ -22,9 +22,13 @@ export default function Header() {
   const navItems = [
     { href: '#home', label: 'בית' },
     { href: '#services', label: 'שירותים' },
-    { href: '#gallery', label: 'גלריית תוצאות' },
     { href: '#contact', label: 'צור קשר' },
   ];
+
+  const handleGalleryClick = () => {
+    const event = new CustomEvent('openResultsGallery');
+    window.dispatchEvent(event);
+  };
 
   return (
     <header className={`bg-white/95 backdrop-blur-md sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'shadow-md' : 'shadow-sm'}`}>
@@ -59,6 +63,12 @@ export default function Header() {
                 {item.label}
               </a>
             ))}
+            <button
+              onClick={handleGalleryClick}
+              className="px-4 py-2 text-gray-700 hover:text-blue-600 font-medium text-sm rounded-lg transition-all duration-200 hover:bg-blue-50"
+            >
+              גלריית תוצאות
+            </button>
           </div>
 
 
@@ -92,6 +102,15 @@ export default function Header() {
                 {item.label}
               </a>
             ))}
+            <button
+              onClick={() => {
+                setIsMenuOpen(false);
+                handleGalleryClick();
+              }}
+              className="block w-full text-right px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-all duration-200"
+            >
+              גלריית תוצאות
+            </button>
           </div>
         </div>
       </nav>
