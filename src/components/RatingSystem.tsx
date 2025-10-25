@@ -40,7 +40,9 @@ export default function RatingSystem() {
           
           // Log the data source for debugging
           console.log('📊 Reviews data source:', data.source);
-          if (data.source === 'fallback') {
+          if (data.source === 'google_api_no_reviews') {
+            console.log('ℹ️ Business found but no reviews available:', data.message);
+          } else if (data.source === 'fallback') {
             console.log('⚠️ Using fallback data. Reason:', data.message || data.api_error || data.error_message || 'Unknown');
           }
         } else {
@@ -99,14 +101,14 @@ export default function RatingSystem() {
                            <h4 className="text-lg font-semibold text-red-800 mb-2">⚠️ לא ניתן לטעון ביקורות</h4>
                            <p className="text-red-700 mb-4">{error}</p>
                            <div className="space-y-2">
-                             <a
-                               href="https://maps.app.goo.gl/fLrZPQvgNns8JKg86"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 inline-block"
-                             >
-                               צפה בביקורות בגוגל
-                             </a>
+                            <a
+                              href="https://maps.app.goo.gl/up9BSbr8ZhbbLtbe7"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 inline-block"
+                            >
+                              צפה בביקורות בגוגל
+                            </a>
                            </div>
                          </div>
                        </div>
@@ -124,14 +126,14 @@ export default function RatingSystem() {
                            </div>
                          </div>
 
-                         <a
-                           href="https://maps.app.goo.gl/fLrZPQvgNns8JKg86"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 inline-block"
-                         >
-                           דרג אותנו בגוגל
-                         </a>
+                        <a
+                          href="https://maps.app.goo.gl/up9BSbr8ZhbbLtbe7"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 inline-block"
+                        >
+                          דרג אותנו בגוגל
+                        </a>
                        </>
                      )}
             </div>
@@ -151,6 +153,26 @@ export default function RatingSystem() {
                      <div className="text-center py-8">
                        <p className="text-red-600">{error}</p>
                      </div>
+                   ) : googleReviews.length === 0 ? (
+              <div className="text-center py-12 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl">
+                <div className="text-6xl mb-4">⭐</div>
+                <h4 className="text-xl font-bold text-gray-800 mb-2">לא ניתן לטעון ביקורות</h4>
+                <p className="text-gray-600 mb-6 max-w-md mx-auto">
+                  העסק נמצא בגוגל אבל הביקורות עדיין לא זמינות דרך ה-API. 
+                  <br />
+                  עזור לנו לקבל ביקורות ראשונות!
+                </p>
+                <div className="space-y-3">
+                  <a
+                    href="https://maps.app.goo.gl/up9BSbr8ZhbbLtbe7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 inline-block mx-2 transform hover:scale-105"
+                  >
+                    צפה בביקורות בגוגל
+                  </a>
+                </div>
+              </div>
                    ) : (
               <div className="text-center py-8">
                 <div className="bg-blue-50 p-6 rounded-xl mb-4 border border-blue-200">

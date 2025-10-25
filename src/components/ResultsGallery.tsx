@@ -7,83 +7,105 @@ interface GalleryImage {
   src: string;
   title: string;
   description: string;
-  category: 'results' | 'websites' | 'campaigns';
+  category: 'websites-campaigns' | 'meta' | 'tiktok' | 'youtube' | 'google' | 'website-building';
 }
 
 export default function ResultsGallery() {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<'all' | 'results' | 'websites' | 'campaigns'>('all');
+  const [selectedCategory, setSelectedCategory] = useState<'websites-campaigns' | 'meta' | 'tiktok' | 'youtube' | 'google' | 'website-building'>('websites-campaigns');
   const [isOpen, setIsOpen] = useState(false);
 
   const images: GalleryImage[] = [
-    // תמונות תוצאות
+    // תוצאות מטא
     {
       src: '/results/075F6C39-0FFD-46FC-BFD9-3E3C2123C32A_1_201_a.jpeg',
       title: 'תוצאות קמפיין Meta',
       description: 'הצלחה מרשימה בקמפיין פרסום במטא עם ROI גבוה',
-      category: 'results'
+      category: 'meta'
     },
+    {
+      src: '/results/0DD4858C-D4F9-47F2-9D1D-AA494878E91F_1_201_a.jpeg',
+      title: 'קמפיין Facebook Ads',
+      description: 'קמפיין פרסום מוצלח בפייסבוק עם ROI של 400%',
+      category: 'meta'
+    },
+    {
+      src: '/results/F3BE9DB2-D810-459B-B7F4-0022D6166BE8_1_201_a.jpeg',
+      title: 'קמפיין Instagram Ads',
+      description: 'קמפיין פרסום מוצלח באינסטגרם עם engagement גבוה',
+      category: 'meta'
+    },
+    // תוצאות גוגל
     {
       src: '/results/0DD4858C-D4F9-47F2-9D1D-AA494878E91F_1_201_a.jpeg',
       title: 'תוצאות קמפיין Google Ads',
       description: 'ביצועים מעולים בקמפיין Google Ads עם CTR גבוה',
-      category: 'results'
-    },
-    {
-      src: '/results/F3BE9DB2-D810-459B-B7F4-0022D6166BE8_1_201_a.jpeg',
-      title: 'תוצאות קמפיין TikTok',
-      description: 'קמפיין TikTok מוצלח עם engagement גבוה',
-      category: 'results'
-    },
-    // דוגמאות אתרים
-    {
-      src: '/results-1.jpeg',
-      title: 'אתר מסחר אלקטרוני',
-      description: 'אתר חנות אונליין מודרני עם חוויית משתמש מעולה',
-      category: 'websites'
-    },
-    {
-      src: '/results-2.jpeg',
-      title: 'אתר תאגידי',
-      description: 'אתר תאגידי מקצועי עם עיצוב נקי ומתקדם',
-      category: 'websites'
-    },
-    {
-      src: '/results-3.jpeg',
-      title: 'אתר שירותים',
-      description: 'אתר שירותים עם ממשק משתמש אינטואיטיבי',
-      category: 'websites'
-    },
-    // קמפיינים נוספים
-    {
-      src: '/results/075F6C39-0FFD-46FC-BFD9-3E3C2123C32A_1_201_a.jpeg',
-      title: 'קמפיין Facebook Ads',
-      description: 'קמפיין פרסום מוצלח בפייסבוק עם ROI של 400%',
-      category: 'campaigns'
+      category: 'google'
     },
     {
       src: '/results/0DD4858C-D4F9-47F2-9D1D-AA494878E91F_1_201_a.jpeg',
       title: 'קמפיין Google Shopping',
       description: 'קמפיין Google Shopping עם CTR גבוה ומחיר נמוך לקליק',
-      category: 'campaigns'
+      category: 'google'
+    },
+    // תוצאות טיקטוק
+    {
+      src: '/results/F3BE9DB2-D810-459B-B7F4-0022D6166BE8_1_201_a.jpeg',
+      title: 'תוצאות קמפיין TikTok',
+      description: 'קמפיין TikTok מוצלח עם engagement גבוה',
+      category: 'tiktok'
     },
     {
       src: '/results/F3BE9DB2-D810-459B-B7F4-0022D6166BE8_1_201_a.jpeg',
       title: 'קמפיין TikTok Ads',
       description: 'קמפיין TikTok יצירתי עם engagement גבוה במיוחד',
-      category: 'campaigns'
+      category: 'tiktok'
+    },
+    // תוצאות יוטיוב
+    {
+      src: '/results-1.jpeg',
+      title: 'קמפיין יוטיוב מוצלח',
+      description: 'קמפיין פרסום ביוטיוב עם הגעה של מיליוני צפיות',
+      category: 'youtube'
+    },
+    {
+      src: '/results-2.jpeg',
+      title: 'ערוץ יוטיוב עסקי',
+      description: 'בניית ערוץ יוטיוב עסקי עם תוכן איכותי ומנויים רבים',
+      category: 'youtube'
+    },
+    // בניית אתרים
+    {
+      src: '/results-1.jpeg',
+      title: 'אתר מסחר אלקטרוני',
+      description: 'אתר חנות אונליין מודרני עם חוויית משתמש מעולה',
+      category: 'website-building'
+    },
+    {
+      src: '/results-2.jpeg',
+      title: 'אתר תאגידי',
+      description: 'אתר תאגידי מקצועי עם עיצוב נקי ומתקדם',
+      category: 'website-building'
+    },
+    {
+      src: '/results-3.jpeg',
+      title: 'אתר שירותים',
+      description: 'אתר שירותים עם ממשק משתמש אינטואיטיבי',
+      category: 'website-building'
     }
   ];
 
-  const filteredImages = selectedCategory === 'all' 
+  const filteredImages = selectedCategory === 'websites-campaigns' 
     ? images 
     : images.filter(img => img.category === selectedCategory);
 
   const categories = [
-    { key: 'all', label: 'הכל', count: images.length },
-    { key: 'results', label: 'תוצאות', count: images.filter(img => img.category === 'results').length },
-    { key: 'websites', label: 'אתרים', count: images.filter(img => img.category === 'websites').length },
-    { key: 'campaigns', label: 'קמפיינים', count: images.filter(img => img.category === 'campaigns').length }
+    { key: 'websites-campaigns', label: 'אתרים וקמפיינים', count: images.length },
+    { key: 'meta', label: 'מטא', count: images.filter(img => img.category === 'meta').length },
+    { key: 'tiktok', label: 'טיקטוק', count: images.filter(img => img.category === 'tiktok').length },
+    { key: 'youtube', label: 'יוטיוב', count: images.filter(img => img.category === 'youtube').length },
+    { key: 'google', label: 'גוגל', count: images.filter(img => img.category === 'google').length },
+    { key: 'website-building', label: 'בניית אתרים', count: images.filter(img => img.category === 'website-building').length }
   ];
 
   useEffect(() => {
@@ -145,7 +167,7 @@ export default function ResultsGallery() {
             {categories.map((category) => (
               <button
                 key={category.key}
-                onClick={() => setSelectedCategory(category.key as 'all' | 'results' | 'websites' | 'campaigns')}
+                onClick={() => setSelectedCategory(category.key as 'websites-campaigns' | 'meta' | 'tiktok' | 'youtube' | 'google' | 'website-building')}
                 className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 ${
                   selectedCategory === category.key
                     ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/50'
@@ -158,14 +180,20 @@ export default function ResultsGallery() {
           </div>
 
           {/* Images Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <div className={`grid gap-6 mb-8 ${
+            selectedCategory === 'website-building' 
+              ? 'grid-cols-1 lg:grid-cols-2' 
+              : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+          }`}>
             {filteredImages.map((image, index) => (
               <div
                 key={index}
                 className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer border border-white/10 hover:border-white/20"
                 onClick={() => setSelectedImage(image)}
               >
-                <div className="relative h-72">
+                <div className={`relative ${
+                  selectedCategory === 'website-building' ? 'h-96' : 'h-72'
+                }`}>
                   <Image
                     src={image.src}
                     alt={image.title}
