@@ -7,12 +7,12 @@ interface GalleryImage {
   src: string;
   title: string;
   description: string;
-  category: 'websites-campaigns' | 'meta' | 'tiktok' | 'youtube' | 'google' | 'website-building';
+  category: 'meta' | 'tiktok' | 'youtube' | 'google' | 'website-building';
 }
 
 export default function ResultsGallery() {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<'websites-campaigns' | 'meta' | 'tiktok' | 'youtube' | 'google' | 'website-building'>('websites-campaigns');
+  const [selectedCategory, setSelectedCategory] = useState<'meta' | 'tiktok' | 'youtube' | 'google' | 'website-building'>('meta');
   const [isOpen, setIsOpen] = useState(false);
 
   const images: GalleryImage[] = [
@@ -43,7 +43,7 @@ export default function ResultsGallery() {
       category: 'google'
     },
     {
-      src: '/results/0DD4858C-D4F9-47F2-9D1D-AA494878E91F_1_201_a.jpeg',
+      src: '/results/075F6C39-0FFD-46FC-BFD9-3E3C2123C32A_1_201_a.jpeg',
       title: 'קמפיין Google Shopping',
       description: 'קמפיין Google Shopping עם CTR גבוה ומחיר נמוך לקליק',
       category: 'google'
@@ -56,7 +56,7 @@ export default function ResultsGallery() {
       category: 'tiktok'
     },
     {
-      src: '/results/F3BE9DB2-D810-459B-B7F4-0022D6166BE8_1_201_a.jpeg',
+      src: '/results/0DD4858C-D4F9-47F2-9D1D-AA494878E91F_1_201_a.jpeg',
       title: 'קמפיין TikTok Ads',
       description: 'קמפיין TikTok יצירתי עם engagement גבוה במיוחד',
       category: 'tiktok'
@@ -95,12 +95,9 @@ export default function ResultsGallery() {
     }
   ];
 
-  const filteredImages = selectedCategory === 'websites-campaigns' 
-    ? images 
-    : images.filter(img => img.category === selectedCategory);
+  const filteredImages = images.filter(img => img.category === selectedCategory);
 
   const categories = [
-    { key: 'websites-campaigns', label: 'אתרים וקמפיינים', count: images.length },
     { key: 'meta', label: 'מטא', count: images.filter(img => img.category === 'meta').length },
     { key: 'tiktok', label: 'טיקטוק', count: images.filter(img => img.category === 'tiktok').length },
     { key: 'youtube', label: 'יוטיוב', count: images.filter(img => img.category === 'youtube').length },
@@ -167,7 +164,7 @@ export default function ResultsGallery() {
             {categories.map((category) => (
               <button
                 key={category.key}
-                onClick={() => setSelectedCategory(category.key as 'websites-campaigns' | 'meta' | 'tiktok' | 'youtube' | 'google' | 'website-building')}
+                onClick={() => setSelectedCategory(category.key as 'meta' | 'tiktok' | 'youtube' | 'google' | 'website-building')}
                 className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 ${
                   selectedCategory === category.key
                     ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/50'
