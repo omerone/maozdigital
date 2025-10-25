@@ -61,24 +61,6 @@ export default function Header() {
             ))}
           </div>
 
-          {/* CTA Button - Desktop */}
-          <div className="hidden lg:block">
-            <button
-              onClick={() => {
-                const event = new CustomEvent('openResultsGallery');
-                window.dispatchEvent(event);
-              }}
-              className="group relative px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
-            >
-              <span className="relative z-10 flex items-center space-x-2 space-x-reverse">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-                <span>צפה בתוצאות</span>
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </button>
-          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -110,19 +92,6 @@ export default function Header() {
                 {item.label}
               </a>
             ))}
-            <button
-              onClick={() => {
-                setIsMenuOpen(false);
-                const event = new CustomEvent('openResultsGallery');
-                window.dispatchEvent(event);
-              }}
-              className="w-full mt-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg flex items-center justify-center space-x-2 space-x-reverse"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-              <span>צפה בתוצאות</span>
-            </button>
           </div>
         </div>
       </nav>
