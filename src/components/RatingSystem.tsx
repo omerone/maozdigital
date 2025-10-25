@@ -37,6 +37,12 @@ export default function RatingSystem() {
         if (data.success) {
           setGoogleReviews(data.reviews || []);
           setPlaceDetails(data.placeDetails);
+          
+          // Log the data source for debugging
+          console.log('📊 Reviews data source:', data.source);
+          if (data.source === 'fallback') {
+            console.log('⚠️ Using fallback data. Reason:', data.message || data.api_error || data.error_message || 'Unknown');
+          }
         } else {
           setError(data.error || 'שגיאה בטעינת הדירוגים');
         }
