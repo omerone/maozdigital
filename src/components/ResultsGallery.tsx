@@ -16,7 +16,7 @@ export default function ResultsGallery() {
   const [isOpen, setIsOpen] = useState(false);
 
   const images: GalleryImage[] = [
-    // תוצאות מטא
+    // תוצאות מטא בלבד
     {
       src: '/results/075F6C39-0FFD-46FC-BFD9-3E3C2123C32A_1_201_a.jpeg',
       title: 'תוצאות קמפיין Meta',
@@ -34,64 +34,6 @@ export default function ResultsGallery() {
       title: 'קמפיין Instagram Ads',
       description: 'קמפיין פרסום מוצלח באינסטגרם עם engagement גבוה',
       category: 'meta'
-    },
-    // תוצאות גוגל
-    {
-      src: '/results/0DD4858C-D4F9-47F2-9D1D-AA494878E91F_1_201_a.jpeg',
-      title: 'תוצאות קמפיין Google Ads',
-      description: 'ביצועים מעולים בקמפיין Google Ads עם CTR גבוה',
-      category: 'google'
-    },
-    {
-      src: '/results/075F6C39-0FFD-46FC-BFD9-3E3C2123C32A_1_201_a.jpeg',
-      title: 'קמפיין Google Shopping',
-      description: 'קמפיין Google Shopping עם CTR גבוה ומחיר נמוך לקליק',
-      category: 'google'
-    },
-    // תוצאות טיקטוק
-    {
-      src: '/results/F3BE9DB2-D810-459B-B7F4-0022D6166BE8_1_201_a.jpeg',
-      title: 'תוצאות קמפיין TikTok',
-      description: 'קמפיין TikTok מוצלח עם engagement גבוה',
-      category: 'tiktok'
-    },
-    {
-      src: '/results/0DD4858C-D4F9-47F2-9D1D-AA494878E91F_1_201_a.jpeg',
-      title: 'קמפיין TikTok Ads',
-      description: 'קמפיין TikTok יצירתי עם engagement גבוה במיוחד',
-      category: 'tiktok'
-    },
-    // תוצאות יוטיוב
-    {
-      src: '/results-1.jpeg',
-      title: 'קמפיין יוטיוב מוצלח',
-      description: 'קמפיין פרסום ביוטיוב עם הגעה של מיליוני צפיות',
-      category: 'youtube'
-    },
-    {
-      src: '/results-2.jpeg',
-      title: 'ערוץ יוטיוב עסקי',
-      description: 'בניית ערוץ יוטיוב עסקי עם תוכן איכותי ומנויים רבים',
-      category: 'youtube'
-    },
-    // בניית אתרים
-    {
-      src: '/results-1.jpeg',
-      title: 'אתר מסחר אלקטרוני',
-      description: 'אתר חנות אונליין מודרני עם חוויית משתמש מעולה',
-      category: 'website-building'
-    },
-    {
-      src: '/results-2.jpeg',
-      title: 'אתר תאגידי',
-      description: 'אתר תאגידי מקצועי עם עיצוב נקי ומתקדם',
-      category: 'website-building'
-    },
-    {
-      src: '/results-3.jpeg',
-      title: 'אתר שירותים',
-      description: 'אתר שירותים עם ממשק משתמש אינטואיטיבי',
-      category: 'website-building'
     }
   ];
 
@@ -177,12 +119,13 @@ export default function ResultsGallery() {
           </div>
 
           {/* Images Grid */}
-          <div className={`grid gap-6 mb-8 ${
-            selectedCategory === 'website-building' 
-              ? 'grid-cols-1 lg:grid-cols-2' 
-              : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
-          }`}>
-            {filteredImages.map((image, index) => (
+          {filteredImages.length > 0 ? (
+            <div className={`grid gap-6 mb-8 ${
+              selectedCategory === 'website-building' 
+                ? 'grid-cols-1 lg:grid-cols-2' 
+                : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+            }`}>
+              {filteredImages.map((image, index) => (
               <div
                 key={index}
                 className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer border border-white/10 hover:border-white/20"
@@ -208,8 +151,22 @@ export default function ResultsGallery() {
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center py-20 text-center">
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-12 border border-white/10">
+                <div className="text-6xl mb-6">🚧</div>
+                <h3 className="text-2xl font-bold text-white mb-4">בקרוב...</h3>
+                <p className="text-gray-300 text-lg max-w-md">
+                  {selectedCategory === 'tiktok' && 'תוצאות טיקטוק יוצגו כאן בקרוב'}
+                  {selectedCategory === 'youtube' && 'תוצאות יוטיוב יוצגו כאן בקרוב'}
+                  {selectedCategory === 'google' && 'תוצאות גוגל יוצגו כאן בקרוב'}
+                  {selectedCategory === 'website-building' && 'דוגמאות בניית אתרים יוצגו כאן בקרוב'}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
