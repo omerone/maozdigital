@@ -95,13 +95,20 @@ export default function RatingSystem() {
                 </div>
                      ) : error ? (
                        <div className="text-center py-8">
-                         <p className="text-red-600 mb-4">{error}</p>
-                         <button
-                           onClick={() => window.location.reload()}
-                           className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg"
-                         >
-                           נסה שוב
-                         </button>
+                         <div className="bg-red-50 p-6 rounded-xl border border-red-200">
+                           <h4 className="text-lg font-semibold text-red-800 mb-2">⚠️ לא ניתן לטעון ביקורות</h4>
+                           <p className="text-red-700 mb-4">{error}</p>
+                           <div className="space-y-2">
+                             <a
+                               href="https://maps.app.goo.gl/fLrZPQvgNns8JKg86"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 inline-block"
+                             >
+                               צפה בביקורות בגוגל
+                             </a>
+                           </div>
+                         </div>
                        </div>
                      ) : (
                        <>
@@ -144,61 +151,29 @@ export default function RatingSystem() {
                      <div className="text-center py-8">
                        <p className="text-red-600">{error}</p>
                      </div>
-                   ) : displayedReviews.length > 0 ? (
-              <>
-                {displayedReviews.map((review, index) => (
-                  <div key={index} className="bg-gray-50 p-6 rounded-xl">
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="font-semibold text-gray-900 flex items-center">
-                        {review.author_name}
-                        <span className="ml-2 text-blue-500 text-sm">✓ גוגל</span>
-                      </div>
-                      <div className="flex">{renderStars(review.rating)}</div>
-                    </div>
-                    <p className="text-gray-700 mb-2">{review.text}</p>
-                    <div className="text-sm text-gray-500">{review.relative_time_description}</div>
-                  </div>
-                ))}
-                {googleReviews.length > 3 && !showAllReviews && (
-                  <button
-                    onClick={() => setShowAllReviews(true)}
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300"
-                  >
-                    הצג את כל הביקורות ({googleReviews.length})
-                  </button>
-                )}
-                {showAllReviews && googleReviews.length > 3 && (
-                  <button
-                    onClick={() => setShowAllReviews(false)}
-                    className="w-full border border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold py-3 px-6 rounded-lg transition-all duration-300"
-                  >
-                    הצג פחות
-                  </button>
-                )}
-              </>
-            ) : (
+                   ) : (
               <div className="text-center py-8">
-                <div className="bg-blue-50 p-6 rounded-xl mb-4">
-                  <h4 className="text-lg font-semibold text-blue-900 mb-2">דירוגים זמינים בגוגל</h4>
-                  <p className="text-blue-700 mb-4">
-                    העסק שלך &quot;Maoz digital&quot; קיים בגוגל My Business עם דירוג 5.0 כוכבים מבוסס על ביקורת אחת!
+                <div className="bg-yellow-50 p-6 rounded-xl mb-4 border border-yellow-200">
+                  <h4 className="text-lg font-semibold text-yellow-800 mb-2">🔍 ביקורות לא זמינות דרך API</h4>
+                  <p className="text-yellow-700 mb-4">
+                    העסק שלך קיים בגוגל, אבל הביקורות לא נגישות דרך Google Places API. 
+                    זה נפוץ עם עסקים חדשים או כאלה שטרם אומתו במלואם.
                   </p>
-                  <div className="flex justify-center mb-4">
-                    {renderStars(5)}
-                  </div>
                   <a
                     href="https://maps.app.goo.gl/fLrZPQvgNns8JKg86"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 inline-block"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 inline-block"
                   >
-                    צפה בדירוגים בגוגל
+                    צפה בביקורות בגוגל
                   </a>
                 </div>
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <p className="text-gray-700 text-sm">
-                    <strong>הערה:</strong> הדירוגים מוצגים מהמידע הזמין על העסק שלך. 
-                    כדי לראות את כל הביקורות, לחץ על הקישור למעלה.
+                    <strong>פתרונות אפשריים:</strong><br/>
+                    • וודא שהעסק מאומת במלואו ב-Google My Business<br/>
+                    • בקש מלקוחות להשאיר ביקורות נוספות<br/>
+                    • פנה לתמיכה של Google My Business
                   </p>
                 </div>
               </div>

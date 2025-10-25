@@ -4,22 +4,9 @@ import { NextRequest, NextResponse } from 'next/server';
 const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
 const PLACE_ID = process.env.GOOGLE_PLACE_ID || "ChIJlzPr_pwXDW4RXYc2FT3SaUc"; // Maoz Digital Place ID (correct format)
 
-// Business information based on actual Google My Business data
-const BUSINESS_INFO = {
-  name: "מעוז לוסטיג - מומחה שיווק דיגיטלי לחנויות איקומרס",
-  rating: 5.0,
-  user_ratings_total: 1,
-  reviews: [
-    {
-      author_name: "רן חדש",
-      rating: 5,
-      text: "היינו צריכים מספר עבודים לטווח הקצר שלנו חודש שלם עבודה חדשה עבודים חדשים חמישה עבודים חדשים",
-      relative_time_description: "לפני 23 שעות",
-      time: Date.now() - (23 * 60 * 60 * 1000), // 23 hours ago
-      language: "he"
-    }
-  ]
-};
+// Note: Google Places API doesn't return reviews for this business
+// This indicates the business exists but reviews are not accessible via the public API
+// This is common for newer businesses or those with limited Google My Business verification
 
 export async function GET() {
   try {
@@ -27,18 +14,13 @@ export async function GET() {
     console.log('📍 Place ID:', PLACE_ID);
     console.log('🔑 API Key available:', !!GOOGLE_PLACES_API_KEY);
     
-    // If no API key is available, return fallback data
+    // If no API key is available, return no reviews message
     if (!GOOGLE_PLACES_API_KEY) {
-      console.log('❌ No Google Places API key found, using fallback data');
+      console.log('❌ No Google Places API key found');
       return NextResponse.json({
-        success: true,
-        placeDetails: {
-          rating: BUSINESS_INFO.rating,
-          user_ratings_total: BUSINESS_INFO.user_ratings_total,
-        },
-        reviews: BUSINESS_INFO.reviews,
-        source: 'business_data',
-        message: 'No API key configured'
+        success: false,
+        error: 'Google Places API key not configured',
+        message: 'Cannot fetch reviews without API configuration'
       });
     }
 
@@ -68,15 +50,10 @@ export async function GET() {
     if (data.status !== 'OK') {
       console.log(`❌ Google Places API status: ${data.status}, error: ${data.error_message || 'Unknown error'}`);
       return NextResponse.json({
-        success: true,
-        placeDetails: {
-          rating: BUSINESS_INFO.rating,
-          user_ratings_total: BUSINESS_INFO.user_ratings_total,
-        },
-        reviews: BUSINESS_INFO.reviews,
-        source: 'business_data',
+        success: false,
+        error: `Google Places API error: ${data.status}`,
         api_error: data.status,
-        api_error_message: data.error_message
+        api_error_message: data.error_message || 'Unknown error'
       });
     }
 
@@ -86,27 +63,32 @@ export async function GET() {
     console.log('📊 Total ratings:', result.user_ratings_total);
     console.log('💬 Reviews count:', result.reviews ? result.reviews.length : 0);
 
+    // Check if we actually got reviews data
+    if (!result.rating && !result.reviews) {
+      console.log('⚠️ No reviews data available from Google Places API');
+      return NextResponse.json({
+        success: false,
+        error: 'No reviews available',
+        message: 'Business exists but reviews are not accessible via Google Places API',
+        business_name: result.name || 'מעוז לוסטיג - מומחה שיווק דיגיטלי לחנויות איקומרס'
+      });
+    }
+
     return NextResponse.json({
       success: true,
       placeDetails: {
-        rating: result.rating || BUSINESS_INFO.rating,
-        user_ratings_total: result.user_ratings_total || BUSINESS_INFO.user_ratings_total,
+        rating: result.rating || 0,
+        user_ratings_total: result.user_ratings_total || 0,
       },
-      reviews: result.reviews || BUSINESS_INFO.reviews,
-      source: result.rating ? 'google_api' : 'business_data'
+      reviews: result.reviews || [],
+      source: 'google_api'
     });
 
   } catch (error) {
     console.error('❌ Error fetching Google reviews:', error);
-    // Return fallback data instead of error
     return NextResponse.json({
-      success: true,
-      placeDetails: {
-        rating: BUSINESS_INFO.rating,
-        user_ratings_total: BUSINESS_INFO.user_ratings_total,
-      },
-      reviews: BUSINESS_INFO.reviews,
-      source: 'business_data',
+      success: false,
+      error: 'Failed to fetch reviews',
       error_message: error instanceof Error ? error.message : 'Unknown error'
     });
   }
