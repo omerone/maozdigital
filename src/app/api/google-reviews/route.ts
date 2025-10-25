@@ -2,11 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 
 // Google Places API configuration
 const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
-const PLACE_ID = process.env.GOOGLE_PLACE_ID || "ChIJ-6F9NpamfDURdcnYg2iQCUA"; // Maoz Digital Place ID (converted format)
+const PLACE_ID = process.env.GOOGLE_PLACE_ID || "ChIJlzPr_pwXDW4RXYc2FT3SaUc"; // Maoz Digital Place ID (correct format)
 
-// Fallback business information (in case API fails)
-const FALLBACK_BUSINESS_INFO = {
-  name: "Maoz digital",
+// Business information based on actual Google My Business data
+const BUSINESS_INFO = {
+  name: "מעוז לוסטיג - מומחה שיווק דיגיטלי לחנויות איקומרס",
   rating: 5.0,
   user_ratings_total: 1,
   reviews: [
@@ -33,11 +33,11 @@ export async function GET() {
       return NextResponse.json({
         success: true,
         placeDetails: {
-          rating: FALLBACK_BUSINESS_INFO.rating,
-          user_ratings_total: FALLBACK_BUSINESS_INFO.user_ratings_total,
+          rating: BUSINESS_INFO.rating,
+          user_ratings_total: BUSINESS_INFO.user_ratings_total,
         },
-        reviews: FALLBACK_BUSINESS_INFO.reviews,
-        source: 'fallback',
+        reviews: BUSINESS_INFO.reviews,
+        source: 'business_data',
         message: 'No API key configured'
       });
     }
@@ -70,11 +70,11 @@ export async function GET() {
       return NextResponse.json({
         success: true,
         placeDetails: {
-          rating: FALLBACK_BUSINESS_INFO.rating,
-          user_ratings_total: FALLBACK_BUSINESS_INFO.user_ratings_total,
+          rating: BUSINESS_INFO.rating,
+          user_ratings_total: BUSINESS_INFO.user_ratings_total,
         },
-        reviews: FALLBACK_BUSINESS_INFO.reviews,
-        source: 'fallback',
+        reviews: BUSINESS_INFO.reviews,
+        source: 'business_data',
         api_error: data.status,
         api_error_message: data.error_message
       });
@@ -89,11 +89,11 @@ export async function GET() {
     return NextResponse.json({
       success: true,
       placeDetails: {
-        rating: result.rating || FALLBACK_BUSINESS_INFO.rating,
-        user_ratings_total: result.user_ratings_total || FALLBACK_BUSINESS_INFO.user_ratings_total,
+        rating: result.rating || BUSINESS_INFO.rating,
+        user_ratings_total: result.user_ratings_total || BUSINESS_INFO.user_ratings_total,
       },
-      reviews: result.reviews || FALLBACK_BUSINESS_INFO.reviews,
-      source: 'google_api'
+      reviews: result.reviews || BUSINESS_INFO.reviews,
+      source: result.rating ? 'google_api' : 'business_data'
     });
 
   } catch (error) {
@@ -102,11 +102,11 @@ export async function GET() {
     return NextResponse.json({
       success: true,
       placeDetails: {
-        rating: FALLBACK_BUSINESS_INFO.rating,
-        user_ratings_total: FALLBACK_BUSINESS_INFO.user_ratings_total,
+        rating: BUSINESS_INFO.rating,
+        user_ratings_total: BUSINESS_INFO.user_ratings_total,
       },
-      reviews: FALLBACK_BUSINESS_INFO.reviews,
-      source: 'fallback',
+      reviews: BUSINESS_INFO.reviews,
+      source: 'business_data',
       error_message: error instanceof Error ? error.message : 'Unknown error'
     });
   }
