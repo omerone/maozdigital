@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description: "שיווק ופרסום בפלטפורמות כמו פייסבוק אינסטגרם טיקטוק יו טיוב ובניית אתרים לכל מטרה. פתרונות דיגיטליים מתקדמים לעסק שלך עם מעוז דיגיטל",
   metadataBase: new URL('https://maozdigital.com'),
   other: {
-    'google-site-verification': 'google373348a2a6f59275',
+    'google-site-verification': 'W7ami2l6am7Fo_EDpUwPKdwPAyBVM3GAf5mQEndkXg4',
   },
   icons: {
     icon: [
