@@ -107,7 +107,7 @@ export default function Header() {
                 setIsMenuOpen(false);
                 handleGalleryClick();
               }}
-              className="block w-full text-right px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-all duration-200"
+              className="block w-full text-center px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-all duration-200"
             >
               גלריית תוצאות
             </button>
