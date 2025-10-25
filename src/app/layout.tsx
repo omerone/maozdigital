@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Maoz Digital - בניית אתרים ושיווק מקצועי | עומר מעוז",
-  description: "בניית אתרים מקצועיים, שיווק בגוגל, שיווק ממומן במטא וטיקטוק. פתרונות דיגיטל מתקדמים לעסק שלך עם עומר מעוז",
+  title: "Maoz Digital - שיווק פרסום ובניית אתרים",
+  description: "שיווק ופרסום בפלטפורמות כמו פייסבוק אינסטגרם טיקטוק יו טיוב ובניית אתרים לכל מטרה. פתרונות דיגיטליים מתקדמים לעסק שלך עם מעוז דיגיטל",
   metadataBase: new URL('https://maozdigital.com'),
   icons: {
     icon: [
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
   },
   manifest: '/manifest.json',
   openGraph: {
-    title: "Maoz Digital - בניית אתרים ושיווק מקצועי | עומר מעוז",
-    description: "בניית אתרים מקצועיים, שיווק בגוגל, שיווק ממומן במטא וטיקטוק. פתרונות דיגיטל מתקדמים לעסק שלך עם עומר מעוז",
+    title: "Maoz Digital - שיווק פרסום ובניית אתרים",
+    description: "שיווק ופרסום בפלטפורמות כמו פייסבוק אינסטגרם טיקטוק יו טיוב ובניית אתרים לכל מטרה. פתרונות דיגיטליים מתקדמים לעסק שלך עם מעוז דיגיטל",
     url: 'https://maozdigital.com',
     siteName: 'Maoz Digital',
     locale: 'he_IL',
@@ -44,8 +44,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Maoz Digital - בניית אתרים ושיווק מקצועי | עומר מעוז",
-    description: "בניית אתרים מקצועיים, שיווק בגוגל, שיווק ממומן במטא וטיקטוק. פתרונות דיגיטל מתקדמים לעסק שלך עם עומר מעוז",
+    title: "Maoz Digital - שיווק פרסום ובניית אתרים",
+    description: "שיווק ופרסום בפלטפורמות כמו פייסבוק אינסטגרם טיקטוק יו טיוב ובניית אתרים לכל מטרה. פתרונות דיגיטליים מתקדמים לעסק שלך עם מעוז דיגיטל",
   },
   alternates: {
     canonical: 'https://maozdigital.com',
