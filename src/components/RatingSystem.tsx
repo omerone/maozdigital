@@ -156,7 +156,7 @@ export default function RatingSystem() {
                 <div className="bg-blue-50 p-6 rounded-xl mb-4 border border-blue-200">
                   <h4 className="text-lg font-semibold text-blue-800 mb-2">🔗 ביקורות זמינות בגוגל</h4>
                   <p className="text-blue-700 mb-4">
-                    העסק שלך "מעוז לוסטיג - מומחה שיווק דיגיטלי לחנויות איקומרס" קיים בגוגל עם ביקורות אמיתיות!
+                    העסק שלך &quot;מעוז לוסטיג - מומחה שיווק דיגיטלי לחנויות איקומרס&quot; קיים בגוגל עם ביקורות אמיתיות!
                   </p>
                   <div className="space-y-3">
                     <a
