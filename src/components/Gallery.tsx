@@ -54,13 +54,6 @@ export default function Gallery() {
                   className="w-full h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity"
                   onClick={() => setSelectedImage({ src: result.image, title: result.title })}
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                  <div className="text-white text-center">
-                    <h3 className="text-xl font-bold mb-2">{result.title}</h3>
-                    <div className="text-3xl font-bold mb-2">{result.value}</div>
-                    <p className="text-sm opacity-90">{result.description}</p>
-                  </div>
-                </div>
               </div>
             </div>
           ))}
@@ -90,11 +83,6 @@ export default function Gallery() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-
-            {/* Image title */}
-            <div className="absolute bottom-4 left-4 right-4 bg-black bg-opacity-50 text-white p-3 rounded-lg">
-              <h3 className="text-lg font-semibold text-center">{selectedImage.title}</h3>
-            </div>
           </div>
         </div>
       )}

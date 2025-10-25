@@ -86,11 +86,11 @@ export default function ResultsGallery() {
     { key: 'campaigns', label: 'קמפיינים', count: images.filter(img => img.category === 'campaigns').length }
   ];
 
-  // Close modal with Escape key and listen for custom events
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setSelectedImage(null);
+        setIsOpen(false);
       }
     };
 
@@ -98,14 +98,13 @@ export default function ResultsGallery() {
       setIsOpen(true);
     };
 
-    if (selectedImage) {
+    if (isOpen) {
       document.addEventListener('keydown', handleEscape);
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
 
-    // Listen for custom event from Header
     window.addEventListener('openResultsGallery', handleOpenGallery);
 
     return () => {
@@ -113,35 +112,27 @@ export default function ResultsGallery() {
       window.removeEventListener('openResultsGallery', handleOpenGallery);
       document.body.style.overflow = 'unset';
     };
-  }, [selectedImage]);
+  }, [isOpen]);
 
   if (!isOpen) {
-    return (
-      <button
-        onClick={() => {
-          console.log('Opening gallery...');
-          setIsOpen(true);
-        }}
-        className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
-      >
-        🎯 צפה בתוצאות שלנו
-      </button>
-    );
+    return null;
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-95 z-50 overflow-y-auto">
-      <div className="min-h-screen p-4">
+    <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black z-50 overflow-y-auto">
+      <div className="min-h-screen p-4 sm:p-6 lg:p-8">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="flex justify-between items-center mb-8 text-white">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-2">התוצאות שלנו</h2>
-              <p className="text-gray-300">גלריית עבודות ותוצאות מרשימות</p>
+          <div className="flex flex-col sm:flex-row justify-between items-center mb-8 sm:mb-12 text-white">
+            <div className="mb-4 sm:mb-0">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                התוצאות שלנו
+              </h2>
+              <p className="text-gray-400 text-lg">גלריית עבודות ותוצאות מרשימות</p>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="bg-white bg-opacity-20 hover:bg-opacity-30 text-white rounded-full p-3 transition-all"
+              className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white rounded-full p-3 transition-all duration-300 hover:scale-110"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -150,15 +141,15 @@ export default function ResultsGallery() {
           </div>
 
           {/* Category Filter */}
-          <div className="flex flex-wrap gap-2 mb-8 justify-center">
+          <div className="flex flex-wrap gap-3 mb-10 justify-center">
             {categories.map((category) => (
               <button
                 key={category.key}
                 onClick={() => setSelectedCategory(category.key as 'all' | 'results' | 'websites' | 'campaigns')}
-                className={`px-4 py-2 rounded-full font-medium transition-all ${
+                className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 ${
                   selectedCategory === category.key
-                    ? 'bg-white text-black'
-                    : 'bg-white bg-opacity-20 text-white hover:bg-opacity-30'
+                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/50'
+                    : 'bg-white/10 backdrop-blur-sm text-gray-300 hover:bg-white/20 hover:text-white'
                 }`}
               >
                 {category.label} ({category.count})
@@ -167,76 +158,57 @@ export default function ResultsGallery() {
           </div>
 
           {/* Images Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {filteredImages.map((image, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer"
+                className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer border border-white/10 hover:border-white/20"
                 onClick={() => setSelectedImage(image)}
               >
-                <div className="relative h-64">
+                <div className="relative h-72">
                   <Image
                     src={image.src}
                     alt={image.title}
                     fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <h3 className="font-bold text-lg mb-1">{image.title}</h3>
-                    <p className="text-sm opacity-90">{image.description}</p>
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  {/* Info on hover */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 className="font-bold text-white text-lg mb-1">{image.title}</h3>
+                    <p className="text-gray-300 text-sm line-clamp-2">{image.description}</p>
                   </div>
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* Add More Button */}
-          <div className="text-center">
-            <button 
-              onClick={() => {
-                alert('כדי להוסיף תמונות נוספות, פשוט העלה אותן לתיקיית /public/results/ והן יופיעו אוטומטית בגלריה!');
-              }}
-              className="bg-gradient-to-r from-green-600 to-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-green-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
-            >
-              + הוסף עוד תמונות
-            </button>
-            <p className="text-gray-400 text-sm mt-2">
-              העלה תמונות לתיקיית /public/results/ כדי להוסיף אותן לגלריה
-            </p>
           </div>
         </div>
       </div>
 
       {/* Full Screen Image Modal */}
       {selectedImage && (
-        <div className="fixed inset-0 bg-black bg-opacity-95 z-60 flex items-center justify-center p-4">
-          <div className="relative max-w-6xl max-h-full">
+        <div className="fixed inset-0 bg-black/95 z-60 flex items-center justify-center p-4" onClick={() => setSelectedImage(null)}>
+          <div className="relative max-w-6xl max-h-full" onClick={(e) => e.stopPropagation()}>
             <Image
               src={selectedImage.src}
               alt={selectedImage.title}
               width={1200}
               height={800}
-              className="max-w-full max-h-full object-contain rounded-lg"
-              onClick={(e) => e.stopPropagation()}
+              className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
             />
             
             {/* Close button */}
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute top-4 right-4 bg-black bg-opacity-50 text-white rounded-full p-3 hover:bg-opacity-75 transition-all"
+              className="absolute top-4 right-4 bg-black/70 hover:bg-black/90 backdrop-blur-sm text-white rounded-full p-3 transition-all duration-300 hover:scale-110"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-
-            {/* Image info */}
-            <div className="absolute bottom-4 left-4 right-4 bg-black bg-opacity-50 text-white p-4 rounded-lg">
-              <h3 className="text-xl font-bold mb-2">{selectedImage.title}</h3>
-              <p className="text-gray-200">{selectedImage.description}</p>
-            </div>
           </div>
         </div>
       )}
