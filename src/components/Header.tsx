@@ -11,9 +11,12 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50">
+    <header className="bg-white shadow-lg sticky top-0 z-50 relative">
+      {/* Gradient bottom border */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-blue-500"></div>
+      
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button
@@ -47,7 +50,7 @@ export default function Header() {
 
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center justify-center flex-1">
-            <div className="w-12 h-12 mr-3 relative">
+            <div className="w-14 h-14 mr-4 relative">
               <Image
                 src="/logo.png"
                 alt="מעוז דיגיטל"
@@ -56,62 +59,72 @@ export default function Header() {
                 priority
               />
             </div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Maoz Digital
-            </h1>
+            <div className="flex flex-col">
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Maoz Digital
+              </h1>
+              <p className="text-xs text-gray-500 -mt-1">Digital Marketing Solutions</p>
+            </div>
           </div>
 
           {/* Spacer for mobile */}
           <div className="md:hidden w-12"></div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6 space-x-reverse">
-            <div className="flex items-baseline space-x-6 space-x-reverse">
+          <div className="hidden md:flex items-center space-x-8 space-x-reverse">
+            <div className="flex items-baseline space-x-8 space-x-reverse">
               <a
                 href="#home"
-                className="text-gray-900 hover:text-blue-600 px-4 py-2 rounded-md text-sm font-medium transition-colors"
+                className="text-gray-800 hover:text-blue-600 px-4 py-2 rounded-lg text-base font-semibold transition-all duration-300 hover:bg-blue-50"
               >
                 בית
               </a>
               <a
                 href="#services"
-                className="text-gray-900 hover:text-blue-600 px-4 py-2 rounded-md text-sm font-medium transition-colors"
+                className="text-gray-800 hover:text-blue-600 px-4 py-2 rounded-lg text-base font-semibold transition-all duration-300 hover:bg-blue-50"
               >
                 שירותים
               </a>
-              <button
-                onClick={() => {
-                  // This will be handled by the ResultsGallery component
-                  const event = new CustomEvent('openResultsGallery');
-                  window.dispatchEvent(event);
-                }}
-                className="text-gray-900 hover:text-blue-600 px-4 py-2 rounded-md text-sm font-medium transition-colors"
-              >
-                תוצאות
-              </button>
               <a
                 href="#contact"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md text-sm font-medium transition-colors"
+                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-xl text-base font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
                 צור קשר
               </a>
             </div>
           </div>
+
+          {/* Results Button */}
+          <div className="hidden md:flex items-center">
+            <button
+              onClick={() => {
+                // This will be handled by the ResultsGallery component
+                const event = new CustomEvent('openResultsGallery');
+                window.dispatchEvent(event);
+              }}
+              className="bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center space-x-3 space-x-reverse shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              <span>צפה בתוצאות שלי</span>
+            </button>
+          </div>
         </div>
 
         {/* Mobile menu */}
         <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden`}>
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+          <div className="px-4 pt-4 pb-6 space-y-3 sm:px-6 bg-gradient-to-b from-white to-gray-50 border-t border-gray-200">
             <a
               href="#home"
-              className="text-gray-900 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+              className="text-gray-800 hover:text-blue-600 block px-4 py-3 rounded-xl text-lg font-semibold transition-all duration-300 hover:bg-blue-50"
               onClick={() => setIsMenuOpen(false)}
             >
               בית
             </a>
             <a
               href="#services"
-              className="text-gray-900 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+              className="text-gray-800 hover:text-blue-600 block px-4 py-3 rounded-xl text-lg font-semibold transition-all duration-300 hover:bg-blue-50"
               onClick={() => setIsMenuOpen(false)}
             >
               שירותים
@@ -122,13 +135,16 @@ export default function Header() {
                 const event = new CustomEvent('openResultsGallery');
                 window.dispatchEvent(event);
               }}
-              className="text-gray-900 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium w-full text-right"
+              className="bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 text-white px-6 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center justify-center space-x-3 space-x-reverse shadow-xl hover:shadow-2xl w-full transform hover:scale-105"
             >
-              תוצאות
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              <span>צפה בתוצאות שלי</span>
             </button>
             <a
               href="#contact"
-              className="bg-blue-600 hover:bg-blue-700 text-white block px-3 py-2 rounded-md text-base font-medium"
+              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white block px-6 py-4 rounded-xl text-lg font-bold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-center"
               onClick={() => setIsMenuOpen(false)}
             >
               צור קשר
