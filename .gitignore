@@ -33,6 +33,10 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# API keys and sensitive scripts
+setup-vercel-env.sh
+**/setup-*.sh
+
 # vercel
 .vercel
 
