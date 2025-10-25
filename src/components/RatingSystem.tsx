@@ -153,27 +153,30 @@ export default function RatingSystem() {
                      </div>
                    ) : (
               <div className="text-center py-8">
-                <div className="bg-yellow-50 p-6 rounded-xl mb-4 border border-yellow-200">
-                  <h4 className="text-lg font-semibold text-yellow-800 mb-2">🔍 ביקורות לא זמינות דרך API</h4>
-                  <p className="text-yellow-700 mb-4">
-                    העסק שלך קיים בגוגל, אבל הביקורות לא נגישות דרך Google Places API. 
-                    זה נפוץ עם עסקים חדשים או כאלה שטרם אומתו במלואם.
+                <div className="bg-blue-50 p-6 rounded-xl mb-4 border border-blue-200">
+                  <h4 className="text-lg font-semibold text-blue-800 mb-2">🔗 ביקורות זמינות בגוגל</h4>
+                  <p className="text-blue-700 mb-4">
+                    העסק שלך "מעוז לוסטיג - מומחה שיווק דיגיטלי לחנויות איקומרס" קיים בגוגל עם ביקורות אמיתיות!
                   </p>
-                  <a
-                    href="https://maps.app.goo.gl/fLrZPQvgNns8JKg86"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 inline-block"
-                  >
-                    צפה בביקורות בגוגל
-                  </a>
+                  <div className="space-y-3">
+                    <a
+                      href="https://maps.app.goo.gl/fLrZPQvgNns8JKg86"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 inline-block"
+                    >
+                      צפה בביקורות בגוגל
+                    </a>
+                    <div className="text-sm text-blue-600">
+                      <p>לחץ כאן כדי לראות את כל הביקורות והדירוגים האמיתיים</p>
+                    </div>
+                  </div>
                 </div>
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <p className="text-gray-700 text-sm">
-                    <strong>פתרונות אפשריים:</strong><br/>
-                    • וודא שהעסק מאומת במלואו ב-Google My Business<br/>
-                    • בקש מלקוחות להשאיר ביקורות נוספות<br/>
-                    • פנה לתמיכה של Google My Business
+                    <strong>למה הביקורות לא מוצגות כאן?</strong><br/>
+                    Google Places API לא תמיד מחזיר ביקורות עבור כל סוגי העסקים. 
+                    הביקורות שלך קיימות ונראות ללקוחות בגוגל Maps ובחיפוש Google.
                   </p>
                 </div>
               </div>

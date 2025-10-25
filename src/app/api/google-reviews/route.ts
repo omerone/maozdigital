@@ -24,9 +24,9 @@ export async function GET() {
       });
     }
 
-    // Try to fetch from Google Places API
+    // Try to fetch from Google Places API with extended fields
     console.log('🌐 Calling Google Places API...');
-    const apiUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=rating,user_ratings_total,reviews&key=${GOOGLE_PLACES_API_KEY}`;
+    const apiUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=name,rating,user_ratings_total,reviews,business_status,types,formatted_address&key=${GOOGLE_PLACES_API_KEY}`;
     console.log('📡 API URL (without key):', apiUrl.replace(GOOGLE_PLACES_API_KEY, 'HIDDEN_KEY'));
     
     const response = await fetch(apiUrl, {
@@ -65,12 +65,41 @@ export async function GET() {
 
     // Check if we actually got reviews data
     if (!result.rating && !result.reviews) {
-      console.log('⚠️ No reviews data available from Google Places API');
+      console.log('⚠️ No reviews data from Places API, trying alternative approach...');
+      
+      // Try alternative API call with different parameters
+      try {
+        const altApiUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=reviews,rating,user_ratings_total&language=he&key=${GOOGLE_PLACES_API_KEY}`;
+        console.log('🔄 Trying alternative API call with Hebrew language...');
+        
+        const altResponse = await fetch(altApiUrl);
+        const altData = await altResponse.json();
+        
+        if (altData.status === 'OK' && altData.result && (altData.result.rating || altData.result.reviews)) {
+          console.log('✅ Got data from alternative API call!');
+          return NextResponse.json({
+            success: true,
+            placeDetails: {
+              rating: altData.result.rating || 0,
+              user_ratings_total: altData.result.user_ratings_total || 0,
+            },
+            reviews: altData.result.reviews || [],
+            source: 'google_api_alt'
+          });
+        }
+      } catch (altError) {
+        console.log('❌ Alternative API call also failed:', altError);
+      }
+      
+      console.log('⚠️ No reviews data available from any Google API method');
       return NextResponse.json({
         success: false,
         error: 'No reviews available',
-        message: 'Business exists but reviews are not accessible via Google Places API',
-        business_name: result.name || 'מעוז לוסטיג - מומחה שיווק דיגיטלי לחנויות איקומרס'
+        message: 'Business exists but reviews are not accessible via Google Places API. This is common for newer businesses or those with limited verification.',
+        business_name: result.name || 'מעוז לוסטיג - מומחה שיווק דיגיטלי לחנויות איקומרס',
+        business_address: result.formatted_address,
+        business_status: result.business_status,
+        business_types: result.types
       });
     }
 
