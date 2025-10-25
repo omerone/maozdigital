@@ -71,10 +71,10 @@ export default function SimpleContactForm() {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-20 bg-white" role="main" aria-labelledby="contact-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 id="contact-title" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             צור קשר
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -204,7 +204,13 @@ export default function SimpleContactForm() {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form 
+              onSubmit={handleSubmit} 
+              className="space-y-6"
+              role="form"
+              aria-labelledby="contact-title"
+              noValidate
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -217,6 +223,8 @@ export default function SimpleContactForm() {
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="הכנס את השם המלא"
+                    aria-describedby="name-error"
+                    aria-invalid="false"
                   />
                 </div>
 

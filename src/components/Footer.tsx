@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gray-900 text-white" role="contentinfo">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Info */}
@@ -11,7 +11,7 @@ export default function Footer() {
               <div className="w-8 h-8 mr-6 relative">
                 <Image
                   src="/logo.png"
-                  alt="מעוז image.pngיגיטל"
+                  alt="לוגו Maoz Digital"
                   fill
                   className="object-contain"
                 />

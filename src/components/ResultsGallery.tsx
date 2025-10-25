@@ -62,6 +62,11 @@ export default function ResultsGallery() {
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
       document.body.style.overflow = 'hidden';
+      // Focus management for accessibility
+      const firstFocusableElement = document.querySelector('[data-gallery-focusable]') as HTMLElement;
+      if (firstFocusableElement) {
+        firstFocusableElement.focus();
+      }
     } else {
       document.body.style.overflow = 'unset';
     }
@@ -80,38 +85,57 @@ export default function ResultsGallery() {
   }
 
   return (
-    <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black z-50 overflow-y-auto">
+    <div 
+      className="fixed inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black z-50 overflow-y-auto"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="gallery-title"
+      aria-describedby="gallery-description"
+    >
       <div className="min-h-screen p-4 sm:p-6 lg:p-8">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="flex flex-col sm:flex-row justify-between items-center mb-8 sm:mb-12 text-white">
             <div className="mb-4 sm:mb-0">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              <h2 
+                id="gallery-title"
+                className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+              >
                 התוצאות שלנו
               </h2>
-              <p className="text-gray-400 text-lg">גלריית עבודות ותוצאות מרשימות</p>
+              <p id="gallery-description" className="text-gray-400 text-lg">גלריית עבודות ותוצאות מרשימות</p>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white rounded-full p-3 transition-all duration-300 hover:scale-110"
+              className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white rounded-full p-3 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-900"
+              aria-label="סגור גלריה"
+              data-gallery-focusable
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
 
           {/* Category Filter */}
-          <div className="flex flex-wrap gap-3 mb-10 justify-center">
+          <div 
+            className="flex flex-wrap gap-3 mb-10 justify-center"
+            role="tablist"
+            aria-label="בחר קטגוריית תוצאות"
+          >
             {categories.map((category) => (
               <button
                 key={category.key}
                 onClick={() => setSelectedCategory(category.key as 'meta' | 'tiktok' | 'youtube' | 'google' | 'website-building')}
-                className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 ${
+                className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-900 ${
                   selectedCategory === category.key
                     ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/50'
                     : 'bg-white/10 backdrop-blur-sm text-gray-300 hover:bg-white/20 hover:text-white'
                 }`}
+                role="tab"
+                aria-selected={selectedCategory === category.key}
+                aria-controls={`gallery-${category.key}`}
+                aria-label={`קטגוריית ${category.label} - ${category.count} תוצאות`}
               >
                 {category.label} ({category.count})
               </button>
@@ -120,16 +144,31 @@ export default function ResultsGallery() {
 
           {/* Images Grid */}
           {filteredImages.length > 0 ? (
-            <div className={`grid gap-6 mb-8 ${
-              selectedCategory === 'website-building' 
-                ? 'grid-cols-1 lg:grid-cols-2' 
-                : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
-            }`}>
+            <div 
+              className={`grid gap-6 mb-8 ${
+                selectedCategory === 'website-building' 
+                  ? 'grid-cols-1 lg:grid-cols-2' 
+                  : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+              }`}
+              role="tabpanel"
+              id={`gallery-${selectedCategory}`}
+              aria-labelledby={`tab-${selectedCategory}`}
+            >
               {filteredImages.map((image, index) => (
               <div
                 key={index}
-                className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer border border-white/10 hover:border-white/20"
+                className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer border border-white/10 hover:border-white/20 focus-within:ring-2 focus-within:ring-white focus-within:ring-offset-2 focus-within:ring-offset-gray-900"
                 onClick={() => setSelectedImage(image)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setSelectedImage(image);
+                  }
+                }}
+                tabIndex={0}
+                role="button"
+                aria-label={`צפה בתמונה: ${image.title}`}
+                aria-describedby={`image-desc-${index}`}
               >
                 <div className={`relative ${
                   selectedCategory === 'website-building' ? 'h-96' : 'h-72'
@@ -147,7 +186,7 @@ export default function ResultsGallery() {
                   {/* Info on hover */}
                   <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                     <h3 className="font-bold text-white text-lg mb-1">{image.title}</h3>
-                    <p className="text-gray-300 text-sm line-clamp-2">{image.description}</p>
+                    <p id={`image-desc-${index}`} className="text-gray-300 text-sm line-clamp-2">{image.description}</p>
                   </div>
                 </div>
               </div>

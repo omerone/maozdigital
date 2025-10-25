@@ -19,6 +19,14 @@ export default function Header() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Handle keyboard navigation
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleMenu();
+    }
+  };
+
   const navItems = [
     { href: '#home', label: 'בית' },
     { href: '#services', label: 'שירותים' },
@@ -31,41 +39,58 @@ export default function Header() {
   };
 
   return (
-    <header className={`bg-white/95 backdrop-blur-md sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'shadow-md' : 'shadow-sm'}`}>
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header 
+      className={`bg-white/95 backdrop-blur-md sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'shadow-md' : 'shadow-sm'}`}
+      role="banner"
+    >
+      <nav 
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        role="navigation"
+        aria-label="ניווט ראשי"
+      >
         <div className="flex justify-between items-center h-20">
           {/* Logo Section */}
           <div className="flex items-center space-x-6 space-x-reverse">
-            <div className="relative w-12 h-12">
-              <Image
-                src="/logo.png"
-                alt="Maoz Digital"
-                fill
-                className="object-contain drop-shadow-sm"
-                priority
-              />
-            </div>
-            <div className="hidden sm:block mr-4">
-              <h1 className="text-2xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Maoz Digital
-              </h1>
-            </div>
+            <a 
+              href="#home" 
+              className="flex items-center space-x-6 space-x-reverse focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
+              aria-label="חזרה לעמוד הבית"
+            >
+              <div className="relative w-12 h-12">
+                <Image
+                  src="/logo.png"
+                  alt="לוגו Maoz Digital"
+                  fill
+                  className="object-contain drop-shadow-sm"
+                  priority
+                />
+              </div>
+              <div className="hidden sm:block mr-4">
+                <h1 className="text-2xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Maoz Digital
+                </h1>
+              </div>
+            </a>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1 space-x-reverse">
+          <div className="hidden lg:flex items-center space-x-1 space-x-reverse" role="menubar">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="px-4 py-2 text-gray-700 hover:text-blue-600 font-medium text-sm rounded-lg transition-all duration-200 hover:bg-blue-50"
+                className="px-4 py-2 text-gray-700 hover:text-blue-600 font-medium text-sm rounded-lg transition-all duration-200 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                role="menuitem"
+                aria-label={`ניווט ל${item.label}`}
               >
                 {item.label}
               </a>
             ))}
             <button
               onClick={handleGalleryClick}
-              className="px-4 py-2 text-gray-700 hover:text-blue-600 font-medium text-sm rounded-lg transition-all duration-200 hover:bg-blue-50"
+              className="px-4 py-2 text-gray-700 hover:text-blue-600 font-medium text-sm rounded-lg transition-all duration-200 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              role="menuitem"
+              aria-label="פתח גלריית תוצאות"
             >
               גלריית תוצאות
             </button>
@@ -75,14 +100,18 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="lg:hidden inline-flex items-center justify-center p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors duration-200"
-            aria-label="תפריט"
+            onKeyDown={handleKeyDown}
+            className="lg:hidden inline-flex items-center justify-center p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            aria-label={isMenuOpen ? "סגור תפריט" : "פתח תפריט"}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
           >
             <svg
               className={`w-6 h-6 transition-transform duration-200 ${isMenuOpen ? 'rotate-90' : ''}`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -90,14 +119,21 @@ export default function Header() {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`lg:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
+        <div 
+          id="mobile-menu"
+          className={`lg:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}
+          role="menu"
+          aria-hidden={!isMenuOpen}
+        >
           <div className="py-4 space-y-2 border-t border-gray-100">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-all duration-200"
+                className="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                role="menuitem"
+                aria-label={`ניווט ל${item.label}`}
               >
                 {item.label}
               </a>
@@ -107,7 +143,9 @@ export default function Header() {
                 setIsMenuOpen(false);
                 handleGalleryClick();
               }}
-              className="block w-full text-center px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-all duration-200"
+              className="block w-full text-center px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              role="menuitem"
+              aria-label="פתח גלריית תוצאות"
             >
               גלריית תוצאות
             </button>

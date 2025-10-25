@@ -11,9 +11,14 @@ import ResultsGallery from '@/components/ResultsGallery';
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Skip to content link for accessibility */}
+      <a href="#main-content" className="skip-link">
+        דלג לתוכן הראשי
+      </a>
+      
       {/* Auto-deploy test - {new Date().toISOString()} */}
       <Header />
-      <main>
+      <main id="main-content" role="main" aria-label="תוכן ראשי">
         <Hero />
         <Services />
         <Gallery />
