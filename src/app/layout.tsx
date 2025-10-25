@@ -16,16 +16,14 @@ export const metadata: Metadata = {
   title: "Maoz Digital - שיווק פרסום ובניית אתרים",
   description: "שיווק ופרסום בפלטפורמות כמו פייסבוק אינסטגרם טיקטוק יו טיוב ובניית אתרים לכל מטרה. פתרונות דיגיטליים מתקדמים לעסק שלך עם מעוז דיגיטל",
   metadataBase: new URL('https://maozdigital.com'),
-  other: {
-    'google-site-verification': 'W7ami2l6am7Fo_EDpUwPKdwPAyBVM3GAf5mQEndkXg4',
-  },
   icons: {
     icon: [
+      { url: '/favicon.ico', sizes: 'any' },
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
       { url: '/logo.png', sizes: '192x192', type: 'image/png' }
     ],
-    shortcut: '/favicon-32x32.png',
+    shortcut: '/favicon.ico',
     apple: '/logo.png',
   },
   manifest: '/manifest.json',
