@@ -148,7 +148,7 @@ export default function SimpleContactForm() {
             <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-2xl border border-gray-200 shadow-lg">
               <h4 className="text-2xl font-bold text-gray-900 mb-6 text-center">למה לעבוד איתנו?</h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex items-center space-x-3 rtl:space-x-reverse">
+                <div className="flex items-center space-x-4 rtl:space-x-reverse">
                   <div className="bg-green-500 p-2 rounded-lg">
                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -156,7 +156,7 @@ export default function SimpleContactForm() {
                   </div>
                   <span className="text-gray-700 font-medium">הצעת פרויקט מותאמת אישית</span>
                 </div>
-                <div className="flex items-center space-x-3 rtl:space-x-reverse">
+                <div className="flex items-center space-x-4 rtl:space-x-reverse">
                   <div className="bg-green-500 p-2 rounded-lg">
                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -164,7 +164,7 @@ export default function SimpleContactForm() {
                   </div>
                   <span className="text-gray-700 font-medium">תוכנית עבודה מפורטת</span>
                 </div>
-                <div className="flex items-center space-x-3 rtl:space-x-reverse">
+                <div className="flex items-center space-x-4 rtl:space-x-reverse">
                   <div className="bg-green-500 p-2 rounded-lg">
                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -172,7 +172,7 @@ export default function SimpleContactForm() {
                   </div>
                   <span className="text-gray-700 font-medium">מחירים שקופים והוגנים</span>
                 </div>
-                <div className="flex items-center space-x-3 rtl:space-x-reverse">
+                <div className="flex items-center space-x-4 rtl:space-x-reverse">
                   <div className="bg-green-500 p-2 rounded-lg">
                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
