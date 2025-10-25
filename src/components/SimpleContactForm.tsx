@@ -99,7 +99,7 @@ export default function SimpleContactForm() {
             <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4">
               {/* Email Card */}
               <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-2xl border border-blue-200 hover:shadow-lg transition-all duration-300">
-                <div className="flex items-center space-x-4 rtl:space-x-reverse">
+                <div className="flex items-center space-x-6 rtl:space-x-reverse">
                   <div className="bg-blue-500 p-3 rounded-xl shadow-lg">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -114,7 +114,7 @@ export default function SimpleContactForm() {
 
               {/* Phone Card */}
               <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-2xl border border-purple-200 hover:shadow-lg transition-all duration-300">
-                <div className="flex items-center space-x-4 rtl:space-x-reverse">
+                <div className="flex items-center space-x-6 rtl:space-x-reverse">
                   <div className="bg-purple-500 p-3 rounded-xl shadow-lg">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -129,7 +129,7 @@ export default function SimpleContactForm() {
 
               {/* Hours Card */}
               <div className="bg-gradient-to-br from-pink-50 to-pink-100 p-6 rounded-2xl border border-pink-200 hover:shadow-lg transition-all duration-300">
-                <div className="flex items-center space-x-4 rtl:space-x-reverse">
+                <div className="flex items-center space-x-6 rtl:space-x-reverse">
                   <div className="bg-pink-500 p-3 rounded-xl shadow-lg">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -148,37 +148,37 @@ export default function SimpleContactForm() {
             <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-2xl border border-gray-200 shadow-lg">
               <h4 className="text-2xl font-bold text-gray-900 mb-6 text-center">למה לעבוד איתנו?</h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex items-center space-x-4 rtl:space-x-reverse">
+                <div className="flex items-center space-x-6 rtl:space-x-reverse">
                   <div className="bg-green-500 p-2 rounded-lg">
                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <span className="text-gray-700 font-medium">הצעת פרויקט מותאמת אישית</span>
+                  <span className="text-gray-700 font-medium mr-2">הצעת פרויקט מותאמת אישית</span>
                 </div>
-                <div className="flex items-center space-x-4 rtl:space-x-reverse">
+                <div className="flex items-center space-x-6 rtl:space-x-reverse">
                   <div className="bg-green-500 p-2 rounded-lg">
                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <span className="text-gray-700 font-medium">תוכנית עבודה מפורטת</span>
+                  <span className="text-gray-700 font-medium mr-2">תוכנית עבודה מפורטת</span>
                 </div>
-                <div className="flex items-center space-x-4 rtl:space-x-reverse">
+                <div className="flex items-center space-x-6 rtl:space-x-reverse">
                   <div className="bg-green-500 p-2 rounded-lg">
                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <span className="text-gray-700 font-medium">מחירים שקופים והוגנים</span>
+                  <span className="text-gray-700 font-medium mr-2">מחירים שקופים והוגנים</span>
                 </div>
-                <div className="flex items-center space-x-4 rtl:space-x-reverse">
+                <div className="flex items-center space-x-6 rtl:space-x-reverse">
                   <div className="bg-green-500 p-2 rounded-lg">
                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <span className="text-gray-700 font-medium">ייעוץ ראשוני חינם</span>
+                  <span className="text-gray-700 font-medium mr-2">ייעוץ ראשוני חינם</span>
                 </div>
               </div>
             </div>
