@@ -11,11 +11,11 @@ const BUSINESS_INFO = {
   user_ratings_total: 1,
   reviews: [
     {
-      author_name: "לקוח מרוצה",
+      author_name: "רן חדש",
       rating: 5,
-      text: "שירות מעולה ומקצועי! הצוות מאוד יעיל ויצירתי. ממליץ בחום!",
-      relative_time_description: "לפני זמן מה",
-      time: Date.now() - (30 * 24 * 60 * 60 * 1000), // 30 days ago
+      text: "היינו צריכים מספר עבודים לטווח הקצר שלנו חודש שלם עבודה חדשה עבודים חדשים חמישה עבודים חדשים",
+      relative_time_description: "לפני 23 שעות",
+      time: Date.now() - (23 * 60 * 60 * 1000), // 23 hours ago
       language: "he"
     }
   ]
