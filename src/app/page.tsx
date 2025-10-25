@@ -1,5 +1,4 @@
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
 import Services from '@/components/Services';
 import Gallery from '@/components/Gallery';
@@ -21,7 +20,6 @@ export default function Home() {
         <RatingSystem />
         <SimpleContactForm />
       </main>
-      <Footer />
       <ScrollToTop />
       <MetaPixel />
       <ResultsGallery />
