@@ -6,6 +6,26 @@ export default function SimpleContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
+  // פונקציה לבדיקת שעות הפעילות
+  const isBusinessHours = () => {
+    const now = new Date();
+    const day = now.getDay(); // 0 = ראשון, 6 = שבת
+    const hour = now.getHours();
+    
+    // א-ה (ראשון-חמישי): 8:00 - 21:00
+    if (day >= 0 && day <= 4) {
+      return hour >= 8 && hour < 21;
+    }
+    
+    // ו (שישי): 8:00 - 19:00
+    if (day === 5) {
+      return hour >= 8 && hour < 19;
+    }
+    
+    // שבת - לא שעות פעילות
+    return false;
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -26,7 +46,34 @@ export default function SimpleContactForm() {
     };
 
     try {
-      // שליחה דרך WhatsApp
+      // בדיקת שעות הפעילות
+      if (!isBusinessHours()) {
+        // מחוץ לשעות הפעילות - פתיחת לקוח המייל
+        const emailSubject = `פנייה חדשה מ${data.name} - ${data.service}`;
+        const emailBody = `שלום עומר,
+
+קיבלתי פנייה חדשה מהאתר:
+
+שם: ${data.name}
+אימייל: ${data.email}
+טלפון: ${data.phone}
+חברה: ${data.company || 'לא צוין'}
+שירות: ${data.service}
+תקציב: ${data.budget || 'לא צוין'}
+הודעה: ${data.message || 'אין הודעה'}
+
+תודה,
+${data.name}`;
+
+        const emailUrl = `mailto:omermaoz1998@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+        window.open(emailUrl, '_blank');
+        
+        setSubmitStatus('success');
+        form.reset();
+        return;
+      }
+
+      // בשעות הפעילות - שליחה דרך WhatsApp
       const whatsappMessage = `שלום עומר!
 
 שם: ${data.name}
@@ -112,20 +159,6 @@ export default function SimpleContactForm() {
                 </div>
               </div>
 
-              {/* Phone Card */}
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-2xl border border-purple-200 hover:shadow-lg transition-all duration-300">
-                <div className="flex items-center space-x-6 rtl:space-x-reverse">
-                  <div className="bg-purple-500 p-3 rounded-xl shadow-lg">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-bold text-gray-900 text-lg">טלפון</h4>
-                    <p className="text-purple-600 font-medium">+972-53-4258042</p>
-                  </div>
-                </div>
-              </div>
 
               {/* Hours Card */}
               <div className="bg-gradient-to-br from-pink-50 to-pink-100 p-6 rounded-2xl border border-pink-200 hover:shadow-lg transition-all duration-300">
@@ -137,8 +170,8 @@ export default function SimpleContactForm() {
                   </div>
                   <div className="flex-1">
                     <h4 className="font-bold text-gray-900 text-lg">שעות פעילות</h4>
-                    <p className="text-pink-600 font-medium">א-ה: 10:00 - 20:00</p>
-                    <p className="text-pink-600 font-medium">ו: 10:00 - 15:00</p>
+                    <p className="text-pink-600 font-medium">א-ה: 8:00 - 21:00</p>
+                    <p className="text-pink-600 font-medium">ו: 8:00 - 19:00</p>
                   </div>
                 </div>
               </div>
@@ -190,7 +223,10 @@ export default function SimpleContactForm() {
               <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
                 <div className="flex items-center">
                   <span className="text-green-500 mr-2">✓</span>
-                  תודה! פתחנו לך WhatsApp עם כל הפרטים. נחזור אליך תוך 24 שעות.
+                  {!isBusinessHours() 
+                    ? 'תודה! פתחנו לך את לקוח המייל עם כל הפרטים. נחזור אליך תוך 24 שעות.'
+                    : 'תודה! פתחנו לך WhatsApp עם כל הפרטים. נחזור אליך תוך 24 שעות.'
+                  }
                 </div>
               </div>
             )}
@@ -203,6 +239,16 @@ export default function SimpleContactForm() {
                 </div>
               </div>
             )}
+
+            {/* שעות פעילות */}
+            <div className="bg-blue-50 border border-blue-200 text-blue-700 px-4 py-3 rounded-lg mb-6">
+              <div className="flex items-center">
+                <span className="text-blue-500 mr-2">ℹ️</span>
+                <span className="text-sm">
+                  בשעות הפעילות (א-ה 8:00-21:00, ו 8:00-19:00) נפתח WhatsApp. מחוץ לשעות נפתח לקוח המייל.
+                </span>
+              </div>
+            </div>
 
             <form 
               onSubmit={handleSubmit} 

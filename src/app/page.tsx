@@ -7,6 +7,7 @@ import ScrollToTop from '@/components/ScrollToTop';
 import MetaPixel from '@/components/MetaPixel';
 import RatingSystem from '@/components/RatingSystem';
 import ResultsGallery from '@/components/ResultsGallery';
+import AccessibilityButton from '@/components/AccessibilityButton';
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
         <SimpleContactForm />
       </main>
       <ScrollToTop />
+      <AccessibilityButton />
       <MetaPixel />
       <ResultsGallery />
     </div>
