@@ -8,7 +8,7 @@ export default function Footer() {
           {/* Company Info */}
           <div>
             <div className="flex items-center justify-center mb-4">
-              <div className="w-8 h-8 mr-6 relative">
+              <div className="w-12 h-12 mr-6 relative">
                 <Image
                   src="/logo.png"
                   alt="לוגו Maoz Digital"
