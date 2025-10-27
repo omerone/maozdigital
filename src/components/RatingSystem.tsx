@@ -59,8 +59,10 @@ export default function RatingSystem() {
     fetchGoogleReviews();
   }, []);
 
-
-  const displayedReviews = showAllReviews ? googleReviews : googleReviews.slice(0, 3);
+  // Filter reviews to show only those with text content
+  const reviewsWithText = googleReviews.filter(review => review.text && review.text.trim().length > 0);
+  
+  const displayedReviews = showAllReviews ? reviewsWithText : reviewsWithText.slice(0, 3);
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
@@ -193,6 +195,26 @@ export default function RatingSystem() {
                   </a>
                 </div>
               </div>
+            ) : reviewsWithText.length === 0 ? (
+              <div className="text-center py-12 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl">
+                <div className="text-6xl mb-4">⭐</div>
+                <h4 className="text-xl font-bold text-gray-800 mb-2">אין ביקורות עם טקסט</h4>
+                <p className="text-gray-600 mb-6 max-w-md mx-auto">
+                  יש לנו דירוגים אבל אין ביקורות כתובות עדיין. 
+                  <br />
+                  עזור לנו לקבל ביקורות ראשונות!
+                </p>
+                <div className="space-y-3">
+                  <a
+                    href="https://maps.app.goo.gl/up9BSbr8ZhbbLtbe7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 inline-block mx-2 transform hover:scale-105"
+                  >
+                    צפה בביקורות בגוגל
+                  </a>
+                </div>
+              </div>
             ) : (
               <>
                 {/* Display Reviews */}
@@ -238,14 +260,14 @@ export default function RatingSystem() {
                 </div>
 
                 {/* Show more/less button */}
-                {googleReviews.length > 3 && (
+                {reviewsWithText.length > 3 && (
                   <div className="text-center pt-6">
                     <button
                       onClick={() => setShowAllReviews(!showAllReviews)}
                       className="group relative inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                     >
                       <span className="relative z-10">
-                        {showAllReviews ? 'הצג פחות ביקורות' : `הצג עוד ביקורות (${googleReviews.length - 3})`}
+                        {showAllReviews ? 'הצג פחות ביקורות' : `הצג עוד ביקורות (${reviewsWithText.length - 3})`}
                       </span>
                       <span className="text-xl transition-transform duration-300 group-hover:translate-y-[-2px]">
                         {showAllReviews ? '👆' : '👇'}
