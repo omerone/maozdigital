@@ -143,36 +143,31 @@ ${data.name}`;
             </div>
 
             {/* Contact Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Email Card */}
               <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-2xl border border-blue-200 hover:shadow-lg transition-all duration-300">
-                <div className="flex items-center space-x-6 rtl:space-x-reverse">
-                  <div className="bg-blue-500 p-3 rounded-xl shadow-lg">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex flex-col items-center text-center">
+                  <div className="bg-blue-500 p-4 rounded-xl shadow-lg mb-4">
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
-                  <div className="flex-1">
-                    <h4 className="font-bold text-gray-900 text-lg">אימייל</h4>
-                    <p className="text-blue-600 font-medium">omermaoz1998@gmail.com</p>
-                  </div>
+                  <h4 className="font-bold text-gray-900 text-lg mb-2">אימייל</h4>
+                  <p className="text-blue-600 font-medium">omermaoz1998@gmail.com</p>
                 </div>
               </div>
 
-
               {/* Hours Card */}
               <div className="bg-gradient-to-br from-pink-50 to-pink-100 p-6 rounded-2xl border border-pink-200 hover:shadow-lg transition-all duration-300">
-                <div className="flex items-center space-x-6 rtl:space-x-reverse">
-                  <div className="bg-pink-500 p-3 rounded-xl shadow-lg">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex flex-col items-center text-center">
+                  <div className="bg-pink-500 p-4 rounded-xl shadow-lg mb-4">
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  <div className="flex-1">
-                    <h4 className="font-bold text-gray-900 text-lg">שעות פעילות</h4>
-                    <p className="text-pink-600 font-medium">א-ה: 8:00 - 21:00</p>
-                    <p className="text-pink-600 font-medium">ו: 8:00 - 19:00</p>
-                  </div>
+                  <h4 className="font-bold text-gray-900 text-lg mb-2">שעות פעילות</h4>
+                  <p className="text-pink-600 font-medium">א-ה: 8:00 - 21:00</p>
+                  <p className="text-pink-600 font-medium">ו: 8:00 - 19:00</p>
                 </div>
               </div>
             </div>
