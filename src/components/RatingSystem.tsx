@@ -60,7 +60,15 @@ export default function RatingSystem() {
   }, []);
 
   // Filter reviews to show only those with text content
-  const reviewsWithText = googleReviews.filter(review => review.text && review.text.trim().length > 0);
+  const reviewsWithText = googleReviews.filter(review => {
+    const hasText = review.text && typeof review.text === 'string' && review.text.trim().length > 0;
+    return hasText;
+  });
+  
+  // Debug logging
+  console.log('Total reviews:', googleReviews.length);
+  console.log('Reviews with text:', reviewsWithText.length);
+  console.log('Reviews data:', googleReviews.map(r => ({ name: r.author_name, hasText: r.text && r.text.trim().length > 0, textLength: r.text?.length })));
   
   const displayedReviews = showAllReviews ? reviewsWithText : reviewsWithText.slice(0, 3);
 
