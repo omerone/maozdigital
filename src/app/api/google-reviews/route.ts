@@ -84,7 +84,7 @@ export async function GET() {
     // Log detailed review information
     if (result.reviews && result.reviews.length > 0) {
       console.log('📝 Review details:');
-      result.reviews.forEach((review: any, index: number) => {
+      result.reviews.forEach((review: { author_name?: string; rating?: number; text?: string }, index: number) => {
         console.log(`Review ${index + 1}:`, {
           author: review.author_name,
           rating: review.rating,
