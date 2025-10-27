@@ -6,7 +6,15 @@ export default function SimpleContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [showAfterHoursDialog, setShowAfterHoursDialog] = useState(false);
-  const [formDataToSend, setFormDataToSend] = useState<any>(null);
+  const [formDataToSend, setFormDataToSend] = useState<{
+    name: string | null;
+    email: string | null;
+    phone: string | null;
+    company: string | null;
+    service: string | null;
+    budget: string | null;
+    message: string | null;
+  } | null>(null);
 
   // פונקציה לבדיקת שעות הפעילות
   const isBusinessHours = () => {
@@ -38,13 +46,13 @@ export default function SimpleContactForm() {
     
     // יצירת אובייקט עם הנתונים
     const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      phone: formData.get('phone'),
-      company: formData.get('company'),
-      service: formData.get('service'),
-      budget: formData.get('budget'),
-      message: formData.get('message'),
+      name: formData.get('name') as string | null,
+      email: formData.get('email') as string | null,
+      phone: formData.get('phone') as string | null,
+      company: formData.get('company') as string | null,
+      service: formData.get('service') as string | null,
+      budget: formData.get('budget') as string | null,
+      message: formData.get('message') as string | null,
     };
 
     try {
