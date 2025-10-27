@@ -5,6 +5,8 @@ import { useState } from "react";
 export default function SimpleContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [showAfterHoursDialog, setShowAfterHoursDialog] = useState(false);
+  const [formDataToSend, setFormDataToSend] = useState<any>(null);
 
   // פונקציה לבדיקת שעות הפעילות
   const isBusinessHours = () => {
@@ -48,28 +50,10 @@ export default function SimpleContactForm() {
     try {
       // בדיקת שעות הפעילות
       if (!isBusinessHours()) {
-        // מחוץ לשעות הפעילות - פתיחת לקוח המייל
-        const emailSubject = `פנייה חדשה מ${data.name} - ${data.service}`;
-        const emailBody = `שלום עומר,
-
-קיבלתי פנייה חדשה מהאתר:
-
-שם: ${data.name}
-אימייל: ${data.email}
-טלפון: ${data.phone}
-חברה: ${data.company || 'לא צוין'}
-שירות: ${data.service}
-תקציב: ${data.budget || 'לא צוין'}
-הודעה: ${data.message || 'אין הודעה'}
-
-תודה,
-${data.name}`;
-
-        const emailUrl = `mailto:omermaoz1998@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-        window.open(emailUrl, '_blank');
-        
-        setSubmitStatus('success');
-        form.reset();
+        // מחוץ לשעות הפעילות - הצגת הודעה
+        setFormDataToSend(data);
+        setShowAfterHoursDialog(true);
+        setIsSubmitting(false);
         return;
       }
 
@@ -235,16 +219,6 @@ ${data.name}`;
               </div>
             )}
 
-            {/* שעות פעילות */}
-            <div className="bg-blue-50 border border-blue-200 text-blue-700 px-4 py-3 rounded-lg mb-6">
-              <div className="flex items-center">
-                <span className="text-blue-500 mr-2">ℹ️</span>
-                <span className="text-sm">
-                  בשעות הפעילות (א-ה 8:00-21:00, ו 8:00-19:00) נפתח WhatsApp. מחוץ לשעות נפתח לקוח המייל.
-                </span>
-              </div>
-            </div>
-
             <form 
               onSubmit={handleSubmit} 
               className="space-y-6"
@@ -367,6 +341,67 @@ ${data.name}`;
                 {isSubmitting ? 'שולח...' : 'שלח פנייה דרך WhatsApp'}
               </button>
             </form>
+
+            {/* After Hours Dialog */}
+            {showAfterHoursDialog && (
+              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6">
+                  <div className="text-center">
+                    <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-yellow-100 mb-4">
+                      <svg className="h-6 w-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">מחוץ לשעות העבודה</h3>
+                    <p className="text-gray-600 mb-6">
+                      כרגע אנחנו מחוץ לשעות הפעילות. השאירו פרטים במייל ונחזור אליכם בהקדם.
+                    </p>
+                    <div className="flex gap-3">
+                      <button
+                        onClick={() => {
+                          if (!formDataToSend) return;
+                          
+                          const emailSubject = `פנייה חדשה מ${formDataToSend.name} - ${formDataToSend.service}`;
+                          const emailBody = `שלום עומר,
+
+קיבלתי פנייה חדשה מהאתר:
+
+שם: ${formDataToSend.name}
+אימייל: ${formDataToSend.email}
+טלפון: ${formDataToSend.phone}
+חברה: ${formDataToSend.company || 'לא צוין'}
+שירות: ${formDataToSend.service}
+תקציב: ${formDataToSend.budget || 'לא צוין'}
+הודעה: ${formDataToSend.message || 'אין הודעה'}
+
+תודה,
+${formDataToSend.name}`;
+
+                          const emailUrl = `mailto:omermaoz1998@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+                          window.open(emailUrl, '_blank');
+                          setShowAfterHoursDialog(false);
+                          const form = document.querySelector('form') as HTMLFormElement;
+                          form.reset();
+                          setFormDataToSend(null);
+                        }}
+                        className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300"
+                      >
+                        פתח מייל
+                      </button>
+                      <button
+                        onClick={() => {
+                          setShowAfterHoursDialog(false);
+                          setFormDataToSend(null);
+                        }}
+                        className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-lg transition-all duration-300"
+                      >
+                        ביטול
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
