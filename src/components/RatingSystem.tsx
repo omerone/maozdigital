@@ -73,6 +73,15 @@ export default function RatingSystem() {
     ));
   };
 
+  // Colors for different reviews to make them more vibrant
+  const reviewColors = [
+    { gradient: 'from-blue-500 to-cyan-500', border: 'border-blue-300', icon: '💙' },
+    { gradient: 'from-purple-500 to-pink-500', border: 'border-purple-300', icon: '💜' },
+    { gradient: 'from-green-500 to-emerald-500', border: 'border-green-300', icon: '💚' },
+    { gradient: 'from-orange-500 to-red-500', border: 'border-orange-300', icon: '🧡' },
+    { gradient: 'from-indigo-500 to-blue-500', border: 'border-indigo-300', icon: '💙' },
+  ];
+
 
   return (
     <section id="ratings" className="py-20 bg-white" role="region" aria-labelledby="ratings-title">
@@ -114,26 +123,37 @@ export default function RatingSystem() {
                        </div>
                      ) : (
                        <>
-                         <div className="mb-6">
-                           <div className="text-6xl font-bold text-gray-900 mb-2">
-                             {placeDetails?.rating || 0}
+                         <div className="mb-8">
+                           {/* Rating Badge */}
+                           <div className="relative mb-6">
+                             <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full blur-xl opacity-30"></div>
+                             <div className="relative text-center">
+                               <div className="text-7xl font-black bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent mb-3">
+                                 {placeDetails?.rating || 0}
+                               </div>
+                               <div className="flex justify-center gap-1 mb-4">
+                                 {renderStars(placeDetails?.rating || 0)}
+                               </div>
+                               <div className="text-gray-600 text-lg font-medium">
+                                 מבוסס על {placeDetails?.user_ratings_total || 0} ביקורות
+                               </div>
+                             </div>
                            </div>
-                           <div className="flex justify-center lg:justify-end mb-4">
-                             {renderStars(placeDetails?.rating || 0)}
-                           </div>
-                           <div className="text-gray-600">
-                             מבוסס על {placeDetails?.user_ratings_total || 0} ביקורות
+
+                           {/* Google Badge */}
+                           <div className="text-center">
+                             <a
+                               href="https://maps.app.goo.gl/up9BSbr8ZhbbLtbe7"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               className="group inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl"
+                             >
+                               <span className="text-2xl">⭐</span>
+                               <span>דרג אותנו בגוגל</span>
+                               <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                             </a>
                            </div>
                          </div>
-
-                        <a
-                          href="https://maps.app.goo.gl/up9BSbr8ZhbbLtbe7"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 inline-block"
-                        >
-                          דרג אותנו בגוגל
-                        </a>
                        </>
                      )}
             </div>
@@ -176,60 +196,74 @@ export default function RatingSystem() {
             ) : (
               <>
                 {/* Display Reviews */}
-                <div className="space-y-4">
-                  {displayedReviews.map((review, index) => (
-                    <div 
-                      key={index} 
-                      className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100"
-                    >
-                      <div className="flex items-start justify-between mb-3">
-                        <div className="flex items-center gap-3">
-                          {review.profile_photo_url ? (
-                            <img 
-                              src={review.profile_photo_url} 
-                              alt={review.author_name}
-                              className="w-12 h-12 rounded-full object-cover"
-                            />
-                          ) : (
-                            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold text-lg">
-                              {review.author_name.charAt(0)}
+                <div className="space-y-6">
+                  {displayedReviews.map((review, index) => {
+                    const colors = reviewColors[index % reviewColors.length];
+                    return (
+                      <div 
+                        key={index} 
+                        className="group relative overflow-hidden bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+                      >
+                        {/* Colored Top Border */}
+                        <div className={`h-2 bg-gradient-to-r ${colors.gradient}`}></div>
+                        
+                        <div className="p-6">
+                          {/* Header with icon */}
+                          <div className="flex items-start justify-between mb-4">
+                            <div className="flex items-center gap-4">
+                              <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${colors.gradient} flex items-center justify-center text-2xl shadow-lg`}>
+                                {colors.icon}
+                              </div>
+                              <div>
+                                <h4 className="font-bold text-gray-900 text-lg">{review.author_name}</h4>
+                                <p className="text-sm text-gray-500">{review.relative_time_description}</p>
+                              </div>
                             </div>
-                          )}
-                          <div>
-                            <h4 className="font-semibold text-gray-900">{review.author_name}</h4>
-                            <p className="text-sm text-gray-500">{review.relative_time_description}</p>
+                            <div className="flex gap-1">
+                              {renderStars(review.rating)}
+                            </div>
+                          </div>
+                          
+                          {/* Review Text */}
+                          <div className="relative">
+                            <div className="absolute top-0 right-0 text-6xl opacity-5">"</div>
+                            <p className="text-gray-700 leading-relaxed text-right pr-8 relative z-10">
+                              {review.text}
+                            </p>
                           </div>
                         </div>
-                        <div className="flex">
-                          {renderStars(review.rating)}
-                        </div>
                       </div>
-                      <p className="text-gray-700 leading-relaxed">{review.text}</p>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
 
                 {/* Show more/less button */}
                 {googleReviews.length > 3 && (
-                  <div className="text-center pt-4">
+                  <div className="text-center pt-6">
                     <button
                       onClick={() => setShowAllReviews(!showAllReviews)}
-                      className="text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200"
+                      className="group relative inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                     >
-                      {showAllReviews ? 'הצג פחות ביקורות' : `הצג עוד ביקורות (${googleReviews.length - 3})`}
+                      <span className="relative z-10">
+                        {showAllReviews ? 'הצג פחות ביקורות' : `הצג עוד ביקורות (${googleReviews.length - 3})`}
+                      </span>
+                      <span className="text-xl transition-transform duration-300 group-hover:translate-y-[-2px]">
+                        {showAllReviews ? '👆' : '👇'}
+                      </span>
                     </button>
                   </div>
                 )}
 
                 {/* Link to Google */}
-                <div className="text-center pt-4">
+                <div className="text-center pt-6">
                   <a
                     href="https://maps.app.goo.gl/up9BSbr8ZhbbLtbe7"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-700 text-sm font-medium transition-colors duration-200"
+                    className="inline-flex items-center gap-2 text-gray-600 hover:text-blue-600 text-sm font-medium transition-all duration-200 group"
                   >
-                    צפה בכל הביקורות בגוגל →
+                    <span>צפה בכל הביקורות בגוגל</span>
+                    <span className="transition-transform duration-200 group-hover:translate-x-[-4px]">→</span>
                   </a>
                 </div>
               </>
