@@ -43,7 +43,7 @@ export async function GET() {
 
     // Try to fetch from Google Places API with extended fields
     console.log('🌐 Calling Google Places API...');
-    const apiUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${actualPlaceId}&fields=name,rating,user_ratings_total,reviews,business_status,types,formatted_address&key=${GOOGLE_PLACES_API_KEY}`;
+    const apiUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${actualPlaceId}&fields=name,rating,user_ratings_total,reviews,business_status,types,formatted_address&language=he&key=${GOOGLE_PLACES_API_KEY}`;
     console.log('📡 API URL (without key):', apiUrl.replace(GOOGLE_PLACES_API_KEY, 'HIDDEN_KEY'));
     
     const response = await fetch(apiUrl, {
