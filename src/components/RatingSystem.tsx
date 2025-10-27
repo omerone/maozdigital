@@ -35,11 +35,26 @@ export default function RatingSystem() {
         const data = await response.json();
         
         if (data.success) {
-          setGoogleReviews(data.reviews || []);
+          const reviews = data.reviews || [];
+          setGoogleReviews(reviews);
           setPlaceDetails(data.placeDetails);
           
           // Log the data source for debugging
           console.log('📊 Reviews data source:', data.source);
+          console.log('Total reviews:', reviews.length);
+          
+          // Filter and log reviews with text
+          const reviewsWithText = reviews.filter((review: GoogleReview) => {
+            const hasText = review.text && typeof review.text === 'string' && review.text.trim().length > 0;
+            return hasText;
+          });
+          console.log('Reviews with text:', reviewsWithText.length);
+          console.log('Reviews data:', reviews.map((r: GoogleReview) => ({ 
+            name: r.author_name, 
+            hasText: r.text && r.text.trim().length > 0, 
+            textLength: r.text?.length 
+          })));
+          
           if (data.source === 'google_api_no_reviews') {
             console.log('ℹ️ Business found but no reviews available:', data.message);
           } else if (data.source === 'fallback') {
@@ -64,11 +79,6 @@ export default function RatingSystem() {
     const hasText = review.text && typeof review.text === 'string' && review.text.trim().length > 0;
     return hasText;
   });
-  
-  // Debug logging
-  console.log('Total reviews:', googleReviews.length);
-  console.log('Reviews with text:', reviewsWithText.length);
-  console.log('Reviews data:', googleReviews.map(r => ({ name: r.author_name, hasText: r.text && r.text.trim().length > 0, textLength: r.text?.length })));
   
   const displayedReviews = showAllReviews ? reviewsWithText : reviewsWithText.slice(0, 3);
 

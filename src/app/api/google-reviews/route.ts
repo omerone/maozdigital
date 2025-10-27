@@ -80,6 +80,19 @@ export async function GET() {
     console.log('📊 Total ratings:', result.user_ratings_total);
     console.log('💬 Reviews count:', result.reviews ? result.reviews.length : 0);
     console.log('💬 Reviews data:', JSON.stringify(result.reviews, null, 2));
+    
+    // Log detailed review information
+    if (result.reviews && result.reviews.length > 0) {
+      console.log('📝 Review details:');
+      result.reviews.forEach((review: any, index: number) => {
+        console.log(`Review ${index + 1}:`, {
+          author: review.author_name,
+          rating: review.rating,
+          hasText: review.text && review.text.trim().length > 0,
+          textLength: review.text?.length || 0
+        });
+      });
+    }
 
     // Check if we actually got reviews data
     if (!result.rating && !result.reviews) {
