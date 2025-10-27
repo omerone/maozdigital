@@ -12,7 +12,8 @@ export default function Services() {
         "ניתוח ביצועים מתקדם"
       ],
       icon: "🌐",
-      color: "from-blue-500 to-blue-600"
+      headerColor: "bg-blue-500",
+      buttonColor: "bg-blue-500 hover:bg-blue-600"
     },
     {
       title: "שיווק ממומן במטא (פייסבוק + אינסטגרם)",
@@ -26,7 +27,8 @@ export default function Services() {
         "הגדלת המכירות"
       ],
       icon: "📱",
-      color: "from-purple-500 to-purple-600"
+      headerColor: "bg-gradient-to-r from-purple-500 to-purple-600",
+      buttonColor: "bg-gradient-to-r from-purple-500 to-purple-600 hover:opacity-90"
     },
     {
       title: "שיווק ממומן בטיקטוק",
@@ -40,7 +42,8 @@ export default function Services() {
         "הגדלת המודעות למותג"
       ],
       icon: "🎵",
-      color: "from-pink-500 to-pink-600"
+      headerColor: "bg-pink-500",
+      buttonColor: "bg-pink-500 hover:bg-pink-600"
     }
   ];
 
@@ -63,23 +66,23 @@ export default function Services() {
               className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-200 flex flex-col"
               role="listitem"
             >
-              <div className={`bg-gradient-to-r ${service.color} p-6`}>
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-bold text-white mb-2">
+              <div className={`${service.headerColor} p-8 flex flex-col items-center`}>
+                <div className="text-5xl mb-4">{service.icon}</div>
+                <h3 className="text-xl font-bold text-white text-center">
                   {service.title}
                 </h3>
               </div>
               
               <div className="p-6 flex-1 flex flex-col">
-                <p className="text-gray-600 mb-6">
+                <p className="text-gray-600 mb-6 text-center">
                   {service.description}
                 </p>
                 
                 <ul className="space-y-3 flex-1">
                   {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-start justify-center lg:justify-start">
-                      <span className="text-green-500 mr-4 mt-1 text-lg">✓</span>
-                      <span className="text-gray-700 text-center lg:text-right">{feature}</span>
+                    <li key={featureIndex} className="flex items-start justify-center">
+                      <span className="text-green-500 mr-3 mt-1 text-xl flex-shrink-0">✓</span>
+                      <span className="text-gray-700 text-center">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -87,7 +90,7 @@ export default function Services() {
                 <div className="mt-6">
                   <a
                     href="#contact"
-                    className={`w-full bg-gradient-to-r ${service.color} hover:opacity-90 text-white font-semibold py-3 px-6 rounded-lg transition-opacity duration-300 block text-center`}
+                    className={`w-full ${service.buttonColor} text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 block text-center`}
                   >
                     בואו נתחיל
                   </a>

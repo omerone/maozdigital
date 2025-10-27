@@ -75,11 +75,11 @@ export default function RatingSystem() {
 
   // Colors for different reviews to make them more vibrant
   const reviewColors = [
-    { gradient: 'from-blue-500 to-cyan-500', border: 'border-blue-300', icon: '💙' },
-    { gradient: 'from-purple-500 to-pink-500', border: 'border-purple-300', icon: '💜' },
-    { gradient: 'from-green-500 to-emerald-500', border: 'border-green-300', icon: '💚' },
-    { gradient: 'from-orange-500 to-red-500', border: 'border-orange-300', icon: '🧡' },
-    { gradient: 'from-indigo-500 to-blue-500', border: 'border-indigo-300', icon: '💙' },
+    { gradient: 'from-blue-500 to-cyan-500', border: 'border-blue-300' },
+    { gradient: 'from-purple-500 to-pink-500', border: 'border-purple-300' },
+    { gradient: 'from-green-500 to-emerald-500', border: 'border-green-300' },
+    { gradient: 'from-orange-500 to-red-500', border: 'border-orange-300' },
+    { gradient: 'from-indigo-500 to-blue-500', border: 'border-indigo-300' },
   ];
 
 
@@ -211,8 +211,8 @@ export default function RatingSystem() {
                           {/* Header with icon */}
                           <div className="flex items-start justify-between mb-4">
                             <div className="flex items-center gap-4">
-                              <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${colors.gradient} flex items-center justify-center text-2xl shadow-lg`}>
-                                {colors.icon}
+                              <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${colors.gradient} flex items-center justify-center text-white text-xl font-bold shadow-lg`}>
+                                {review.author_name.charAt(0).toUpperCase()}
                               </div>
                               <div>
                                 <h4 className="font-bold text-gray-900 text-lg">{review.author_name}</h4>
