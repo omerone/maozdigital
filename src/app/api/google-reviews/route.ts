@@ -95,6 +95,13 @@ export async function GET() {
     }
 
     // Check if we actually got reviews data
+    console.log('🔍 Checking result:', {
+      hasRating: !!result.rating,
+      rating: result.rating,
+      hasReviews: !!result.reviews,
+      reviewsCount: result.reviews?.length || 0
+    });
+    
     if (!result.rating && !result.reviews) {
       console.log('⚠️ No reviews data from Places API, trying alternative approach...');
       
