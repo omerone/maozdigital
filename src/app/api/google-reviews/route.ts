@@ -79,6 +79,7 @@ export async function GET() {
     console.log('⭐ Rating:', result.rating);
     console.log('📊 Total ratings:', result.user_ratings_total);
     console.log('💬 Reviews count:', result.reviews ? result.reviews.length : 0);
+    console.log('💬 Reviews data:', JSON.stringify(result.reviews, null, 2));
 
     // Check if we actually got reviews data
     if (!result.rating && !result.reviews) {

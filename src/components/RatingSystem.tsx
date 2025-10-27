@@ -149,11 +149,11 @@ export default function RatingSystem() {
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
                 <p className="text-gray-600">טוען ביקורות...</p>
               </div>
-                   ) : error ? (
-                     <div className="text-center py-8">
-                       <p className="text-red-600">{error}</p>
-                     </div>
-                   ) : googleReviews.length === 0 ? (
+            ) : error ? (
+              <div className="text-center py-8">
+                <p className="text-red-600">{error}</p>
+              </div>
+            ) : googleReviews.length === 0 ? (
               <div className="text-center py-12 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl">
                 <div className="text-6xl mb-4">⭐</div>
                 <h4 className="text-xl font-bold text-gray-800 mb-2">לא ניתן לטעון ביקורות</h4>
@@ -173,35 +173,66 @@ export default function RatingSystem() {
                   </a>
                 </div>
               </div>
-                   ) : (
-              <div className="text-center py-8">
-                <div className="bg-blue-50 p-6 rounded-xl mb-4 border border-blue-200">
-                  <h4 className="text-lg font-semibold text-blue-800 mb-2">🔗 ביקורות זמינות בגוגל</h4>
-                  <p className="text-blue-700 mb-4">
-                    העסק שלך &quot;מעוז לוסטיג - מומחה שיווק דיגיטלי לחנויות איקומרס&quot; קיים בגוגל עם ביקורות אמיתיות!
-                  </p>
-                  <div className="space-y-3">
-                    <a
-                      href="https://maps.app.goo.gl/fLrZPQvgNns8JKg86"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 inline-block"
+            ) : (
+              <>
+                {/* Display Reviews */}
+                <div className="space-y-4">
+                  {displayedReviews.map((review, index) => (
+                    <div 
+                      key={index} 
+                      className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100"
                     >
-                      צפה בביקורות בגוגל
-                    </a>
-                    <div className="text-sm text-blue-600">
-                      <p>לחץ כאן כדי לראות את כל הביקורות והדירוגים האמיתיים</p>
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="flex items-center gap-3">
+                          {review.profile_photo_url ? (
+                            <img 
+                              src={review.profile_photo_url} 
+                              alt={review.author_name}
+                              className="w-12 h-12 rounded-full object-cover"
+                            />
+                          ) : (
+                            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold text-lg">
+                              {review.author_name.charAt(0)}
+                            </div>
+                          )}
+                          <div>
+                            <h4 className="font-semibold text-gray-900">{review.author_name}</h4>
+                            <p className="text-sm text-gray-500">{review.relative_time_description}</p>
+                          </div>
+                        </div>
+                        <div className="flex">
+                          {renderStars(review.rating)}
+                        </div>
+                      </div>
+                      <p className="text-gray-700 leading-relaxed">{review.text}</p>
                     </div>
+                  ))}
+                </div>
+
+                {/* Show more/less button */}
+                {googleReviews.length > 3 && (
+                  <div className="text-center pt-4">
+                    <button
+                      onClick={() => setShowAllReviews(!showAllReviews)}
+                      className="text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200"
+                    >
+                      {showAllReviews ? 'הצג פחות ביקורות' : `הצג עוד ביקורות (${googleReviews.length - 3})`}
+                    </button>
                   </div>
+                )}
+
+                {/* Link to Google */}
+                <div className="text-center pt-4">
+                  <a
+                    href="https://maps.app.goo.gl/up9BSbr8ZhbbLtbe7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-700 text-sm font-medium transition-colors duration-200"
+                  >
+                    צפה בכל הביקורות בגוגל →
+                  </a>
                 </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <p className="text-gray-700 text-sm">
-                    <strong>למה הביקורות לא מוצגות כאן?</strong><br/>
-                    Google Places API לא תמיד מחזיר ביקורות עבור כל סוגי העסקים. 
-                    הביקורות שלך קיימות ונראות ללקוחות בגוגל Maps ובחיפוש Google.
-                  </p>
-                </div>
-              </div>
+              </>
             )}
           </div>
         </div>
