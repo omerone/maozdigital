@@ -226,7 +226,7 @@ export default function RatingSystem() {
                           
                           {/* Review Text */}
                           <div className="relative">
-                            <div className="absolute top-0 right-0 text-6xl opacity-5">"</div>
+                            <div className="absolute top-0 right-0 text-6xl opacity-5">&quot;</div>
                             <p className="text-gray-700 leading-relaxed text-right pr-8 relative z-10">
                               {review.text}
                             </p>
