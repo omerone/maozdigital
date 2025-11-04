@@ -37,28 +37,35 @@ export default function ResultsGallery() {
     },
     // תוצאות טיקטוק
     {
-      src: '/results/tiktok/tiktok-dashboard-1.jpeg',
+      src: '/results/tiktok/tiktok 1.webp',
       title: 'TikTok Ads Dashboard - Campaigns',
       description: 'תוצאות קמפיינים בטיקטוק עם מטריקות מרשימות',
       category: 'tiktok'
     },
     {
-      src: '/results/tiktok/tiktok-demographics-1.jpeg',
+      src: '/results/tiktok/tiktik2.webp',
       title: 'TikTok Ads - Demographics Analysis',
       description: 'ניתוח דמוגרפי של קהלי טיקטוק לפי גילאים',
       category: 'tiktok'
     },
     {
-      src: '/results/tiktok/tiktok-conversions-1.jpeg',
+      src: '/results/tiktok/tiktok3.webp',
       title: 'TikTok Ads - Conversions Overview',
       description: 'סקירת המרות והצלחות בקמפיינים בטיקטוק',
       category: 'tiktok'
     },
     {
-      src: '/results/tiktok/tiktok-performance-1.jpeg',
+      src: '/results/tiktok/tiktok4.webp',
       title: 'TikTok Ads - Performance Metrics',
       description: 'מטריקות ביצועים מתקדמות של קמפיינים בטיקטוק',
       category: 'tiktok'
+    },
+    // תוצאות גוגל
+    {
+      src: '/results/google/google 1.webp',
+      title: 'Google Ads Campaign Results',
+      description: 'תוצאות קמפיינים בגוגל Ads עם ROI גבוה',
+      category: 'google'
     }
   ];
 
