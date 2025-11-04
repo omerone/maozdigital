@@ -18,19 +18,19 @@ export default function ResultsGallery() {
   const images: GalleryImage[] = [
     // תוצאות מטא
     {
-      src: '/results/075F6C39-0FFD-46FC-BFD9-3E3C2123C32A_1_201_a.jpeg',
+      src: '/results/meta/075F6C39-0FFD-46FC-BFD9-3E3C2123C32A_1_201_a.jpeg',
       title: 'תוצאות קמפיין Meta',
       description: 'הצלחה מרשימה בקמפיין פרסום במטא עם ROI גבוה',
       category: 'meta'
     },
     {
-      src: '/results/0DD4858C-D4F9-47F2-9D1D-AA494878E91F_1_201_a.jpeg',
+      src: '/results/meta/0DD4858C-D4F9-47F2-9D1D-AA494878E91F_1_201_a.jpeg',
       title: 'קמפיין Facebook Ads',
       description: 'קמפיין פרסום מוצלח בפייסבוק עם ROI של 400%',
       category: 'meta'
     },
     {
-      src: '/results/F3BE9DB2-D810-459B-B7F4-0022D6166BE8_1_201_a.jpeg',
+      src: '/results/meta/F3BE9DB2-D810-459B-B7F4-0022D6166BE8_1_201_a.jpeg',
       title: 'קמפיין Instagram Ads',
       description: 'קמפיין פרסום מוצלח באינסטגרם עם engagement גבוה',
       category: 'meta'
