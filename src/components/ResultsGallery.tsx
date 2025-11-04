@@ -16,7 +16,7 @@ export default function ResultsGallery() {
   const [isOpen, setIsOpen] = useState(false);
 
   const images: GalleryImage[] = [
-    // תוצאות מטא בלבד
+    // תוצאות מטא
     {
       src: '/results/075F6C39-0FFD-46FC-BFD9-3E3C2123C32A_1_201_a.jpeg',
       title: 'תוצאות קמפיין Meta',
@@ -34,6 +34,31 @@ export default function ResultsGallery() {
       title: 'קמפיין Instagram Ads',
       description: 'קמפיין פרסום מוצלח באינסטגרם עם engagement גבוה',
       category: 'meta'
+    },
+    // תוצאות טיקטוק
+    {
+      src: '/results/tiktok/tiktok-dashboard-1.jpeg',
+      title: 'TikTok Ads Dashboard - Campaigns',
+      description: 'תוצאות קמפיינים בטיקטוק עם מטריקות מרשימות',
+      category: 'tiktok'
+    },
+    {
+      src: '/results/tiktok/tiktok-demographics-1.jpeg',
+      title: 'TikTok Ads - Demographics Analysis',
+      description: 'ניתוח דמוגרפי של קהלי טיקטוק לפי גילאים',
+      category: 'tiktok'
+    },
+    {
+      src: '/results/tiktok/tiktok-conversions-1.jpeg',
+      title: 'TikTok Ads - Conversions Overview',
+      description: 'סקירת המרות והצלחות בקמפיינים בטיקטוק',
+      category: 'tiktok'
+    },
+    {
+      src: '/results/tiktok/tiktok-performance-1.jpeg',
+      title: 'TikTok Ads - Performance Metrics',
+      description: 'מטריקות ביצועים מתקדמות של קמפיינים בטיקטוק',
+      category: 'tiktok'
     }
   ];
 
