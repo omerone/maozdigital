@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function SimpleContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [showAfterHoursDialog, setShowAfterHoursDialog] = useState(false);
+  const [isBusinessHoursNow, setIsBusinessHoursNow] = useState(false);
   const [formDataToSend, setFormDataToSend] = useState<{
     name: string | null;
     email: string | null;
@@ -36,6 +37,21 @@ export default function SimpleContactForm() {
     return false;
   };
 
+  // בדיקת שעות הפעילות בעת טעינת הקומפוננטה ועדכון כל דקה
+  useEffect(() => {
+    const checkBusinessHours = () => {
+      setIsBusinessHoursNow(isBusinessHours());
+    };
+    
+    // בדיקה ראשונית
+    checkBusinessHours();
+    
+    // עדכון כל דקה
+    const interval = setInterval(checkBusinessHours, 60000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -58,9 +74,28 @@ export default function SimpleContactForm() {
     try {
       // בדיקת שעות הפעילות
       if (!isBusinessHours()) {
-        // מחוץ לשעות הפעילות - הצגת הודעה
-        setFormDataToSend(data);
-        setShowAfterHoursDialog(true);
+        // מחוץ לשעות הפעילות - שליחה ישירה למייל
+        const emailSubject = `פנייה חדשה מ${data.name} - ${data.service}`;
+        const emailBody = `שלום עומר,
+
+קיבלתי פנייה חדשה מהאתר:
+
+שם: ${data.name}
+אימייל: ${data.email}
+טלפון: ${data.phone}
+חברה: ${data.company || 'לא צוין'}
+שירות: ${data.service}
+תקציב: ${data.budget || 'לא צוין'}
+הודעה: ${data.message || 'אין הודעה'}
+
+תודה,
+${data.name}`;
+
+        const emailUrl = `mailto:omermaoz1998@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+        window.open(emailUrl, '_blank');
+        
+        setSubmitStatus('success');
+        form.reset();
         setIsSubmitting(false);
         return;
       }
@@ -346,7 +381,11 @@ export default function SimpleContactForm() {
                 disabled={isSubmitting}
                 className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isSubmitting ? 'שולח...' : 'שלח פנייה דרך WhatsApp'}
+                {isSubmitting 
+                  ? 'שולח...' 
+                  : isBusinessHoursNow 
+                    ? 'שלח פנייה דרך WhatsApp' 
+                    : 'שלח פנייה דרך Mail'}
               </button>
             </form>
 
