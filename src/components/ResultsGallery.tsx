@@ -37,25 +37,25 @@ export default function ResultsGallery() {
     },
     // תוצאות טיקטוק
     {
-      src: '/results/tiktok/tiktok 1.webp',
+      src: '/results/tiktok/Screenshot 2025-11-04 at 20.24.34.png',
       title: 'TikTok Ads Dashboard - Campaigns',
       description: 'תוצאות קמפיינים בטיקטוק עם מטריקות מרשימות',
       category: 'tiktok'
     },
     {
-      src: '/results/tiktok/tiktik2.webp',
+      src: '/results/tiktok/Screenshot 2025-11-04 at 20.24.47.png',
       title: 'TikTok Ads - Demographics Analysis',
       description: 'ניתוח דמוגרפי של קהלי טיקטוק לפי גילאים',
       category: 'tiktok'
     },
     {
-      src: '/results/tiktok/tiktok3.webp',
+      src: '/results/tiktok/Screenshot 2025-11-04 at 20.24.57.png',
       title: 'TikTok Ads - Conversions Overview',
       description: 'סקירת המרות והצלחות בקמפיינים בטיקטוק',
       category: 'tiktok'
     },
     {
-      src: '/results/tiktok/tiktok4.webp',
+      src: '/results/tiktok/Screenshot 2025-11-04 at 20.25.07.png',
       title: 'TikTok Ads - Performance Metrics',
       description: 'מטריקות ביצועים מתקדמות של קמפיינים בטיקטוק',
       category: 'tiktok'
