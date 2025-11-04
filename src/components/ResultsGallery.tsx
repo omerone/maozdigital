@@ -66,6 +66,31 @@ export default function ResultsGallery() {
       title: 'Google Ads Campaign Results',
       description: 'תוצאות קמפיינים בגוגל Ads עם ROI גבוה',
       category: 'google'
+    },
+    // בניית אתרים - אתר שירותי פרסום
+    {
+      src: '/results/websites/my web/Screenshot 2025-11-04 at 21.28.47.png',
+      title: 'אתר שירותי פרסום - דף בית',
+      description: 'עיצוב מקצועי ומודרני לאתר שמציג שירותי פרסום דיגיטלי',
+      category: 'website-building'
+    },
+    {
+      src: '/results/websites/my web/Screenshot 2025-11-04 at 21.28.52.png',
+      title: 'אתר שירותי פרסום - עמוד שירותים',
+      description: 'תצוגה מפורטת של השירותים השונים עם עיצוב נקי ומושך',
+      category: 'website-building'
+    },
+    {
+      src: '/results/websites/my web/Screenshot 2025-11-04 at 21.29.01.png',
+      title: 'אתר שירותי פרסום - תוצאות וביקורות',
+      description: 'הצגת תוצאות מרשימות וביקורות לקוחות באתר שירותי פרסום',
+      category: 'website-building'
+    },
+    {
+      src: '/results/websites/my web/Screenshot 2025-11-04 at 21.29.07.png',
+      title: 'אתר שירותי פרסום - טופס יצירת קשר',
+      description: 'טופס יצירת קשר אינטראקטיבי ומקצועי באתר שירותי פרסום',
+      category: 'website-building'
     }
   ];
 
