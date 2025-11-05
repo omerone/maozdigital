@@ -97,7 +97,7 @@ export default function ResultsGallery() {
   const filteredImages = images.filter(img => img.category === selectedCategory);
 
   const categories = [
-    { key: 'meta', label: 'מטא', count: images.filter(img => img.category === 'meta').length },
+    { key: 'meta', label: 'מטא - פייסבוק אינסטגרם', count: images.filter(img => img.category === 'meta').length },
     { key: 'tiktok', label: 'טיקטוק', count: images.filter(img => img.category === 'tiktok').length },
     { key: 'whatsapp-bots', label: 'בוטים לוואטסאפ', count: images.filter(img => img.category === 'whatsapp-bots').length },
     { key: 'google', label: 'גוגל', count: images.filter(img => img.category === 'google').length },
