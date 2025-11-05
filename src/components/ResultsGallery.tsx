@@ -7,12 +7,12 @@ interface GalleryImage {
   src: string;
   title: string;
   description: string;
-  category: 'meta' | 'tiktok' | 'youtube' | 'google' | 'website-building';
+  category: 'meta' | 'tiktok' | 'whatsapp-bots' | 'google' | 'website-building';
 }
 
 export default function ResultsGallery() {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<'meta' | 'tiktok' | 'youtube' | 'google' | 'website-building'>('meta');
+  const [selectedCategory, setSelectedCategory] = useState<'meta' | 'tiktok' | 'whatsapp-bots' | 'google' | 'website-building'>('meta');
   const [isOpen, setIsOpen] = useState(false);
 
   const images: GalleryImage[] = [
@@ -99,7 +99,7 @@ export default function ResultsGallery() {
   const categories = [
     { key: 'meta', label: 'מטא', count: images.filter(img => img.category === 'meta').length },
     { key: 'tiktok', label: 'טיקטוק', count: images.filter(img => img.category === 'tiktok').length },
-    { key: 'youtube', label: 'יוטיוב', count: images.filter(img => img.category === 'youtube').length },
+    { key: 'whatsapp-bots', label: 'בוטים לוואטסאפ', count: images.filter(img => img.category === 'whatsapp-bots').length },
     { key: 'google', label: 'גוגל', count: images.filter(img => img.category === 'google').length },
     { key: 'website-building', label: 'בניית אתרים', count: images.filter(img => img.category === 'website-building').length }
   ];
@@ -183,7 +183,7 @@ export default function ResultsGallery() {
             {categories.map((category) => (
               <button
                 key={category.key}
-                onClick={() => setSelectedCategory(category.key as 'meta' | 'tiktok' | 'youtube' | 'google' | 'website-building')}
+                onClick={() => setSelectedCategory(category.key as 'meta' | 'tiktok' | 'whatsapp-bots' | 'google' | 'website-building')}
                 className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-900 ${
                   selectedCategory === category.key
                     ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/50'
@@ -256,7 +256,7 @@ export default function ResultsGallery() {
                 <h3 className="text-2xl font-bold text-white mb-4">בקרוב...</h3>
                 <p className="text-gray-300 text-lg max-w-md">
                   {selectedCategory === 'tiktok' && 'תוצאות טיקטוק יוצגו כאן בקרוב'}
-                  {selectedCategory === 'youtube' && 'תוצאות יוטיוב יוצגו כאן בקרוב'}
+                  {selectedCategory === 'whatsapp-bots' && 'תוצאות בוטים לוואטסאפ יוצגו כאן בקרוב'}
                   {selectedCategory === 'google' && 'תוצאות גוגל יוצגו כאן בקרוב'}
                   {selectedCategory === 'website-building' && 'דוגמאות בניית אתרים יוצגו כאן בקרוב'}
                 </p>
