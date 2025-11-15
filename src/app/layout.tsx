@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { AdminProvider } from "@/contexts/AdminContext";
+import { ContentProvider } from "@/contexts/ContentContext";
+import AdminEditingBanner from "@/components/AdminEditingBanner";
+import MetaPixel from "@/components/MetaPixel";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -58,6 +62,7 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
+  themeColor: '#f8f6f1',
 };
 
 export default function RootLayout({
@@ -67,10 +72,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="he" dir="rtl">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased rtl`}>
+        <MetaPixel />
+        <AdminProvider>
+          <ContentProvider>
+            <AdminEditingBanner />
+            {children}
+          </ContentProvider>
+        </AdminProvider>
       </body>
     </html>
   );
