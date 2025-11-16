@@ -53,8 +53,8 @@ export default function Header() {
       role="banner"
     >
       <nav className="container-custom" role="navigation" aria-label="ניווט ראשי">
-        <div className="flex justify-between items-center h-20">
-          <div className="flex items-center space-x-6 space-x-reverse">
+        <div className="flex justify-between items-center h-20 relative">
+          <div className="hidden lg:flex items-center space-x-6 space-x-reverse">
             <a
               href="#home"
               className="flex items-center space-x-4 space-x-reverse rounded-xl px-2 py-1 hover:bg-[#f3f1eb] transition-colors focus:outline-none focus:ring-2 focus:ring-[#d4a65a]/40 focus:ring-offset-2 focus:ring-offset-white"
@@ -72,6 +72,30 @@ export default function Header() {
               <div className="mr-2 sm:mr-4">
                 <h1 className="text-xl sm:text-2xl font-semibold text-[#1e1f24] tracking-tight">
                   <EditableText id="header.logo.title" as="span" defaultValue="Maoz Digital" />
+                </h1>
+              </div>
+            </a>
+          </div>
+
+          {/* Mobile centered logo */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 lg:hidden">
+            <a
+              href="#home"
+              className="flex items-center space-x-4 space-x-reverse rounded-xl px-2 py-1 hover:bg-[#f3f1eb] transition-colors focus:outline-none focus:ring-2 focus:ring-[#d4a65a]/40 focus:ring-offset-2 focus:ring-offset-white"
+              aria-label="חזרה לעמוד הבית"
+            >
+              <div className="relative h-12 w-12">
+                <Image
+                  src="/logo.png"
+                  alt="לוגו Maoz Digital"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+              <div className="mr-2">
+                <h1 className="text-xl font-semibold text-[#1e1f24] tracking-tight">
+                  <EditableText id="header.logo.title.mobile" as="span" defaultValue="Maoz Digital" />
                 </h1>
               </div>
             </a>
