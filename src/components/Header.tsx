@@ -54,6 +54,7 @@ export default function Header() {
     >
       <nav className="container-custom" role="navigation" aria-label="ניווט ראשי">
         <div className="flex justify-between items-center h-20 relative">
+          {/* Desktop logo + title */}
           <div className="hidden lg:flex items-center space-x-6 space-x-reverse">
             <a
               href="#home"
@@ -77,27 +78,33 @@ export default function Header() {
             </a>
           </div>
 
-          {/* Mobile centered logo */}
+          {/* Mobile: Logo on the left */}
+          <a
+            href="#home"
+            className="lg:hidden flex items-center rounded-xl px-2 py-1 hover:bg-[#f3f1eb] transition-colors focus:outline-none focus:ring-2 focus:ring-[#d4a65a]/40 focus:ring-offset-2 focus:ring-offset-white"
+            aria-label="חזרה לעמוד הבית"
+          >
+            <div className="relative h-12 w-12">
+              <Image
+                src="/logo.png"
+                alt="לוגו Maoz Digital"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+          </a>
+
+          {/* Mobile: Centered title */}
           <div className="absolute left-1/2 transform -translate-x-1/2 lg:hidden">
             <a
               href="#home"
-              className="flex items-center space-x-4 space-x-reverse rounded-xl px-2 py-1 hover:bg-[#f3f1eb] transition-colors focus:outline-none focus:ring-2 focus:ring-[#d4a65a]/40 focus:ring-offset-2 focus:ring-offset-white"
+              className="flex items-center rounded-xl px-2 py-1 hover:bg-[#f3f1eb] transition-colors focus:outline-none focus:ring-2 focus:ring-[#d4a65a]/40 focus:ring-offset-2 focus:ring-offset-white"
               aria-label="חזרה לעמוד הבית"
             >
-              <div className="relative h-12 w-12">
-                <Image
-                  src="/logo.png"
-                  alt="לוגו Maoz Digital"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
-              <div className="mr-2">
-                <h1 className="text-xl font-semibold text-[#1e1f24] tracking-tight">
-                  <EditableText id="header.logo.title.mobile" as="span" defaultValue="Maoz Digital" />
-                </h1>
-              </div>
+              <h1 className="text-xl font-semibold text-[#1e1f24] tracking-tight">
+                <EditableText id="header.logo.title.mobile" as="span" defaultValue="Maoz Digital" />
+              </h1>
             </a>
           </div>
 
