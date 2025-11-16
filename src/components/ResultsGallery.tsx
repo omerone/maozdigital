@@ -427,13 +427,10 @@ export default function ResultsGallery() {
 
   const openImage = (image: StoredGalleryItem) => {
     if (typeof window !== 'undefined') {
+      // Save current scroll position to restore later
       savedScrollRef.current = window.scrollY;
-      // Scroll to top immediately without animation to ensure modal appears in center
-      window.scrollTo({ top: 0, behavior: 'auto' });
-      // Use requestAnimationFrame to ensure scroll completes before opening modal
-      requestAnimationFrame(() => {
-        setSelectedImage(image);
-      });
+      // Open modal immediately without scrolling - it will appear in center of viewport
+      setSelectedImage(image);
     } else {
       setSelectedImage(image);
     }
@@ -631,51 +628,50 @@ export default function ResultsGallery() {
             )}
           </div>
         </div>
-
-        {selectedImage && (
-          <div
-            className="fixed top-0 left-0 right-0 bottom-0 z-[60] bg-black/55 backdrop-blur-sm flex flex-col items-center justify-center p-4"
-            onClick={closeSelectedImage}
-            style={{ position: 'fixed' }}
-          >
-            <button
-              type="button"
-              onClick={closeSelectedImage}
-              className="mb-4 z-10 inline-flex items-center justify-center rounded-full border border-[#d4a65a] bg-white px-4 py-2 text-sm font-semibold text-[#1e1f24] hover:bg-[#f3f1eb] transition-colors"
-            >
-              סגירה
-            </button>
-            <div
-              className="relative w-full max-w-[min(1600px,100%)] h-[calc(100vh-120px)] rounded-3xl border border-[#ebe7dd] bg-white shadow-[0_25px_60px_rgba(15,23,42,0.25)] overflow-hidden flex items-center justify-center"
-              onClick={(event) => event.stopPropagation()}
-            >
-              {selectedImage.mediaType === 'video' ? (
-                <video
-                  key={selectedImage.path}
-                  src={selectedImage.src}
-                  controls
-                  autoPlay
-                  playsInline
-                  muted
-                  loop
-                  className="w-full h-full object-contain bg-black"
-                />
-              ) : (
-                <div className="relative w-full h-full min-h-[400px]">
-                  <Image
-                    src={selectedImage.src}
-                    alt={selectedImage.title}
-                    fill
-                    className="object-contain"
-                    sizes="100vw"
-                    priority
-                  />
-                </div>
-              )}
-            </div>
-          </div>
-        )}
       </div>
+
+      {selectedImage && (
+        <div
+          className="fixed top-0 left-0 right-0 bottom-0 z-[60] bg-black/55 backdrop-blur-sm flex flex-col items-center justify-center p-4"
+          onClick={closeSelectedImage}
+        >
+          <button
+            type="button"
+            onClick={closeSelectedImage}
+            className="mb-4 z-10 inline-flex items-center justify-center rounded-full border border-[#d4a65a] bg-white px-4 py-2 text-sm font-semibold text-[#1e1f24] hover:bg-[#f3f1eb] transition-colors"
+          >
+            סגירה
+          </button>
+          <div
+            className="relative w-full max-w-[min(1600px,100%)] h-[calc(100vh-120px)] rounded-3xl border border-[#ebe7dd] bg-white shadow-[0_25px_60px_rgba(15,23,42,0.25)] overflow-hidden flex items-center justify-center"
+            onClick={(event) => event.stopPropagation()}
+          >
+            {selectedImage.mediaType === 'video' ? (
+              <video
+                key={selectedImage.path}
+                src={selectedImage.src}
+                controls
+                autoPlay
+                playsInline
+                muted
+                loop
+                className="w-full h-full object-contain bg-black"
+              />
+            ) : (
+              <div className="relative w-full h-full min-h-[400px]">
+                <Image
+                  src={selectedImage.src}
+                  alt={selectedImage.title}
+                  fill
+                  className="object-contain"
+                  sizes="100vw"
+                  priority
+                />
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {isAddModalOpen && (
         <div className="fixed inset-0 z-[60] bg-black/30 backdrop-blur-sm flex items-center justify-center p-4">
