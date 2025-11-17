@@ -561,7 +561,7 @@ export default function ResultsGallery() {
                         openImage(image);
                       }
                     }}
-                    className="relative text-right bg-[#fdfcf9] border border-[#ebe7dd] rounded-2xl overflow-hidden shadow-[0_10px_24px_rgba(15,23,42,0.06)] focus:outline-none focus:ring-2 focus:ring-[#d4a65a]/40 focus:ring-offset-2 focus:ring-offset-white"
+                    className="relative w-full text-right bg-[#fdfcf9] border border-[#ebe7dd] rounded-2xl overflow-hidden shadow-[0_10px_24px_rgba(15,23,42,0.06)] focus:outline-none focus:ring-2 focus:ring-[#d4a65a]/40 focus:ring-offset-2 focus:ring-offset-white"
                   >
                     {isAdmin && (
                       <div className="absolute top-3 left-3 z-10 flex gap-2">
@@ -589,7 +589,7 @@ export default function ResultsGallery() {
                         </button>
                       </div>
                     )}
-                    <div className={`relative ${selectedCategory === 'website-building' ? 'h-80' : 'h-60'}`}>
+                    <div className={`relative w-full ${selectedCategory === 'website-building' ? 'h-80' : 'h-60'} overflow-hidden`}>
                       {image.mediaType === 'video' ? (
                         <video
                           src={image.src}
@@ -597,7 +597,7 @@ export default function ResultsGallery() {
                           loop
                           playsInline
                           controls={false}
-                          className="h-full w-full object-cover"
+                          className="absolute inset-0 w-full h-full object-cover"
                         />
                       ) : (
                         <Image
@@ -606,6 +606,7 @@ export default function ResultsGallery() {
                           fill
                           className="object-cover"
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          style={{ objectFit: 'cover' }}
                         />
                       )}
                       {/* Zoom indicator overlay */}
