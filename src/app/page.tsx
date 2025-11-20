@@ -11,7 +11,7 @@ import AccessibilityButton from '@/components/AccessibilityButton';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#FAF9F7]">
       {/* Skip to content link for accessibility */}
       <a href="#main-content" className="skip-link">
         דלג לתוכן הראשי
