@@ -98,9 +98,9 @@
   }
 
   :root {
-    --background: #f8f6f1;
-    --foreground: #1e1f24;
-    --accent-primary: #d4a65a;
+    --background: #FFFFFF;
+    --foreground: #4A4A4A;
+    --accent-primary: #D1A055;
     --accent-secondary: #8696a7;
     --surface: #ffffff;
   }
