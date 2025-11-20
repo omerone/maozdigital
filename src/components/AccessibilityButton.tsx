@@ -64,7 +64,7 @@ export default function AccessibilityButton() {
       {/* Accessibility Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-4 right-4 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-50 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        className="fixed bottom-4 right-4 bg-[#D1A055] hover:bg-[#bf9144] text-white p-3 rounded-full shadow-lg transition-all duration-300 z-50 focus:outline-none focus:ring-2 focus:ring-[#D1A055] focus:ring-offset-2"
         aria-label="פתח הגדרות נגישות"
         title="הגדרות נגישות"
       >
@@ -104,8 +104,8 @@ export default function AccessibilityButton() {
               </div>
               <button
                 onClick={() => toggleSetting('highContrast')}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                  settings.highContrast ? 'bg-blue-600' : 'bg-gray-200'
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#D1A055] focus:ring-offset-2 ${
+                  settings.highContrast ? 'bg-[#D1A055]' : 'bg-gray-200'
                 }`}
                 role="switch"
                 aria-checked={settings.highContrast}
@@ -127,8 +127,8 @@ export default function AccessibilityButton() {
               </div>
               <button
                 onClick={() => toggleSetting('largeText')}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                  settings.largeText ? 'bg-blue-600' : 'bg-gray-200'
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#D1A055] focus:ring-offset-2 ${
+                  settings.largeText ? 'bg-[#D1A055]' : 'bg-gray-200'
                 }`}
                 role="switch"
                 aria-checked={settings.largeText}
@@ -150,8 +150,8 @@ export default function AccessibilityButton() {
               </div>
               <button
                 onClick={() => toggleSetting('reducedMotion')}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                  settings.reducedMotion ? 'bg-blue-600' : 'bg-gray-200'
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#D1A055] focus:ring-offset-2 ${
+                  settings.reducedMotion ? 'bg-[#D1A055]' : 'bg-gray-200'
                 }`}
                 role="switch"
                 aria-checked={settings.reducedMotion}
@@ -173,8 +173,8 @@ export default function AccessibilityButton() {
               </div>
               <button
                 onClick={() => toggleSetting('focusVisible')}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                  settings.focusVisible ? 'bg-blue-600' : 'bg-gray-200'
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#D1A055] focus:ring-offset-2 ${
+                  settings.focusVisible ? 'bg-[#D1A055]' : 'bg-gray-200'
                 }`}
                 role="switch"
                 aria-checked={settings.focusVisible}

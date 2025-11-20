@@ -93,13 +93,13 @@ export default function RatingSystem() {
     ));
   };
 
-  // Colors for different reviews to make them more vibrant
+  // Colors for different reviews - minimal design
   const reviewColors = [
-    { gradient: 'from-blue-500 to-cyan-500', border: 'border-blue-300' },
-    { gradient: 'from-purple-500 to-pink-500', border: 'border-purple-300' },
-    { gradient: 'from-green-500 to-emerald-500', border: 'border-green-300' },
-    { gradient: 'from-orange-500 to-red-500', border: 'border-orange-300' },
-    { gradient: 'from-indigo-500 to-blue-500', border: 'border-indigo-300' },
+    { gradient: 'from-gray-200 to-gray-300', border: 'border-gray-300' },
+    { gradient: 'from-gray-200 to-gray-300', border: 'border-gray-300' },
+    { gradient: 'from-gray-200 to-gray-300', border: 'border-gray-300' },
+    { gradient: 'from-gray-200 to-gray-300', border: 'border-gray-300' },
+    { gradient: 'from-gray-200 to-gray-300', border: 'border-gray-300' },
   ];
 
 
@@ -118,10 +118,10 @@ export default function RatingSystem() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Rating Summary */}
           <div className="text-center lg:text-right">
-            <div className="bg-gray-50 p-8 rounded-xl">
+            <div className="bg-white p-8 rounded-xl border border-gray-200">
               {loading ? (
                 <div className="text-center py-8">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#D1A055] mx-auto mb-4"></div>
                   <p className="text-gray-600">טוען דירוגים...</p>
                 </div>
                      ) : error ? (
@@ -146,9 +146,8 @@ export default function RatingSystem() {
                          <div className="mb-8">
                            {/* Rating Badge */}
                            <div className="relative mb-6">
-                             <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full blur-xl opacity-30"></div>
                              <div className="relative text-center">
-                               <div className="text-7xl font-black bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent mb-3">
+                               <div className="text-7xl font-black text-[#D1A055] mb-3">
                                  {placeDetails?.rating || 0}
                                </div>
                                <div className="flex justify-center gap-1 mb-4">
@@ -186,7 +185,7 @@ export default function RatingSystem() {
             </h3>
             {loading ? (
               <div className="text-center py-8">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#D1A055] mx-auto mb-4"></div>
                 <p className="text-gray-600">טוען ביקורות...</p>
               </div>
             ) : error ? (
@@ -194,7 +193,7 @@ export default function RatingSystem() {
                 <p className="text-red-600">{error}</p>
               </div>
             ) : googleReviews.length === 0 ? (
-              <div className="text-center py-12 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl">
+              <div className="text-center py-12 bg-white rounded-xl border border-gray-200">
                 <div className="text-6xl mb-4">⭐</div>
                 <h4 className="text-xl font-bold text-gray-800 mb-2">לא ניתן לטעון ביקורות</h4>
                 <p className="text-gray-600 mb-6 max-w-md mx-auto">
@@ -214,7 +213,7 @@ export default function RatingSystem() {
                 </div>
               </div>
             ) : reviewsWithText.length === 0 ? (
-              <div className="text-center py-12 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl">
+              <div className="text-center py-12 bg-white rounded-xl border border-gray-200">
                 <div className="text-6xl mb-4">⭐</div>
                 <h4 className="text-xl font-bold text-gray-800 mb-2">אין ביקורות עם טקסט</h4>
                 <p className="text-gray-600 mb-6 max-w-md mx-auto">
@@ -242,16 +241,16 @@ export default function RatingSystem() {
                     return (
                       <div 
                         key={index} 
-                        className="group relative overflow-hidden bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+                        className="group relative overflow-hidden bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200"
                       >
-                        {/* Colored Top Border */}
-                        <div className={`h-2 bg-gradient-to-r ${colors.gradient}`}></div>
+                        {/* Top Border */}
+                        <div className="h-2 bg-gray-200"></div>
                         
                         <div className="p-6">
                           {/* Header with icon */}
                           <div className="flex items-start justify-between mb-4">
                             <div className="flex items-center gap-4">
-                              <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${colors.gradient} flex items-center justify-center text-white text-xl font-bold shadow-lg`}>
+                              <div className="w-14 h-14 rounded-xl bg-gray-100 flex items-center justify-center text-gray-700 text-xl font-bold">
                                 {review.author_name.charAt(0).toUpperCase()}
                               </div>
                               <div>

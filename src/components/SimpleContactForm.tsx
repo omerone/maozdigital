@@ -172,39 +172,39 @@ ${data.name}`;
             {/* Contact Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Email Card */}
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-2xl border border-blue-200 hover:shadow-lg transition-all duration-300">
+              <div className="bg-white p-6 rounded-2xl border border-gray-200 hover:shadow-md transition-all duration-300">
                 <div className="flex flex-col items-center text-center">
-                  <div className="bg-blue-500 p-4 rounded-xl shadow-lg mb-4">
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="bg-gray-100 p-4 rounded-xl mb-4">
+                    <svg className="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
                   <h4 className="font-bold text-gray-900 text-lg mb-2">אימייל</h4>
-                  <p className="text-blue-600 font-medium">omermaoz1998@gmail.com</p>
+                  <p className="text-gray-600 font-medium">omermaoz1998@gmail.com</p>
                 </div>
               </div>
 
               {/* Hours Card */}
-              <div className="bg-gradient-to-br from-pink-50 to-pink-100 p-6 rounded-2xl border border-pink-200 hover:shadow-lg transition-all duration-300">
+              <div className="bg-white p-6 rounded-2xl border border-gray-200 hover:shadow-md transition-all duration-300">
                 <div className="flex flex-col items-center text-center">
-                  <div className="bg-pink-500 p-4 rounded-xl shadow-lg mb-4">
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="bg-gray-100 p-4 rounded-xl mb-4">
+                    <svg className="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
                   <h4 className="font-bold text-gray-900 text-lg mb-2">שעות פעילות</h4>
-                  <p className="text-pink-600 font-medium">א-ה: 8:00 - 21:00</p>
-                  <p className="text-pink-600 font-medium">ו: 8:00 - 19:00</p>
+                  <p className="text-gray-600 font-medium">א-ה: 8:00 - 21:00</p>
+                  <p className="text-gray-600 font-medium">ו: 8:00 - 19:00</p>
                 </div>
               </div>
             </div>
 
             {/* Why Work With Us */}
-            <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-2xl border border-gray-200 shadow-lg">
+            <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
               <h4 className="text-2xl font-bold text-gray-900 mb-6 text-center">למה לעבוד איתנו?</h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex items-center space-x-6 rtl:space-x-reverse">
-                  <div className="bg-green-500 p-2 rounded-lg">
+                  <div className="bg-[#D1A055] p-2 rounded-lg">
                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -212,7 +212,7 @@ ${data.name}`;
                   <span className="text-gray-700 font-medium mr-2">הצעת פרויקט מותאמת אישית</span>
                 </div>
                 <div className="flex items-center space-x-6 rtl:space-x-reverse">
-                  <div className="bg-green-500 p-2 rounded-lg">
+                  <div className="bg-[#D1A055] p-2 rounded-lg">
                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -220,7 +220,7 @@ ${data.name}`;
                   <span className="text-gray-700 font-medium mr-2">תוכנית עבודה מפורטת</span>
                 </div>
                 <div className="flex items-center space-x-6 rtl:space-x-reverse">
-                  <div className="bg-green-500 p-2 rounded-lg">
+                  <div className="bg-[#D1A055] p-2 rounded-lg">
                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -228,7 +228,7 @@ ${data.name}`;
                   <span className="text-gray-700 font-medium mr-2">מחירים שקופים והוגנים</span>
                 </div>
                 <div className="flex items-center space-x-6 rtl:space-x-reverse">
-                  <div className="bg-green-500 p-2 rounded-lg">
+                  <div className="bg-[#D1A055] p-2 rounded-lg">
                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -240,7 +240,7 @@ ${data.name}`;
           </div>
 
           {/* Contact Form */}
-          <div className="bg-gray-50 p-8 rounded-xl">
+          <div className="bg-white p-8 rounded-xl border border-gray-200">
             {submitStatus === 'success' && (
               <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
                 <div className="flex items-center">
