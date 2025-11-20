@@ -11,9 +11,11 @@ export default function Services() {
         "שיווק בגוגל Ads",
         "ניתוח ביצועים מתקדם"
       ],
-      icon: "🌐",
-      headerColor: "bg-blue-500",
-      buttonColor: "bg-blue-500 hover:bg-blue-600"
+      icon: (
+        <svg className="w-12 h-12 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+        </svg>
+      )
     },
     {
       title: "שיווק ממומן במטא (פייסבוק + אינסטגרם)",
@@ -26,9 +28,11 @@ export default function Services() {
         "יצירת תוכן איכותי",
         "הגדלת המכירות"
       ],
-      icon: "📱",
-      headerColor: "bg-gradient-to-r from-purple-500 to-purple-600",
-      buttonColor: "bg-gradient-to-r from-purple-500 to-purple-600 hover:opacity-90"
+      icon: (
+        <svg className="w-12 h-12 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+        </svg>
+      )
     },
     {
       title: "שיווק ממומן בטיקטוק",
@@ -41,9 +45,11 @@ export default function Services() {
         "אופטימיזציה מתמדת",
         "הגדלת המודעות למותג"
       ],
-      icon: "🎵",
-      headerColor: "bg-pink-500",
-      buttonColor: "bg-pink-500 hover:bg-pink-600"
+      icon: (
+        <svg className="w-12 h-12 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+        </svg>
+      )
     }
   ];
 
@@ -63,34 +69,36 @@ export default function Services() {
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100 flex flex-col"
+              className="bg-gray-50 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-200 flex flex-col"
               role="listitem"
             >
-              <div className="p-8 flex flex-col items-center bg-gray-50">
-                <div className="text-5xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 text-center">
+              <div className="p-8 flex flex-col items-center">
+                <div className="mb-6 flex items-center justify-center">
+                  {service.icon}
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 text-center leading-tight">
                   {service.title}
                 </h3>
               </div>
               
-              <div className="p-6 flex-1 flex flex-col">
-                <p className="text-gray-600 mb-6 text-center">
+              <div className="px-6 pb-6 flex-1 flex flex-col">
+                <p className="text-gray-600 mb-6 text-center text-sm leading-relaxed">
                   {service.description}
                 </p>
                 
-                <ul className="space-y-3 flex-1">
+                <ul className="space-y-3 flex-1 mb-6">
                   {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-start justify-center">
-                      <span className="text-[#D1A055] mr-3 mt-1 text-xl flex-shrink-0">✓</span>
-                      <span className="text-gray-700 text-center">{feature}</span>
+                    <li key={featureIndex} className="flex items-start justify-start">
+                      <span className="text-[#D1A055] ml-3 mt-0.5 text-lg flex-shrink-0 font-bold">✓</span>
+                      <span className="text-gray-700 text-sm text-right flex-1">{feature}</span>
                     </li>
                   ))}
                 </ul>
                 
-                <div className="mt-6">
+                <div className="mt-auto">
                   <a
                     href="#contact"
-                    className="w-full bg-[#D1A055] hover:bg-[#bf9144] text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 block text-center"
+                    className="w-full bg-[#D1A055] hover:bg-[#bf9144] text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 block text-center shadow-sm hover:shadow-md"
                   >
                     בואו נתחיל
                   </a>
