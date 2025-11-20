@@ -30,7 +30,7 @@ export default function Gallery() {
   ];
 
   return (
-    <section id="results" className="py-20 bg-gray-50" role="region" aria-labelledby="results-title">
+    <section id="results" className="py-20 bg-white" role="region" aria-labelledby="results-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 id="results-title" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -76,7 +76,7 @@ export default function Gallery() {
               // פתיחת הגלריה המלאה
               window.dispatchEvent(new CustomEvent('openResultsGallery'));
             }}
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="bg-[#D1A055] hover:bg-[#bf9144] text-white font-semibold py-4 px-10 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D1A055] focus:ring-offset-2"
             aria-label="פתח גלריית תוצאות מלאה"
           >
             <span className="flex items-center justify-center gap-3">

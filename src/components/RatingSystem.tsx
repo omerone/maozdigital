@@ -130,14 +130,14 @@ export default function RatingSystem() {
                            <h4 className="text-lg font-semibold text-red-800 mb-2">⚠️ לא ניתן לטעון ביקורות</h4>
                            <p className="text-red-700 mb-4">{error}</p>
                            <div className="space-y-2">
-                            <a
-                              href="https://maps.app.goo.gl/up9BSbr8ZhbbLtbe7"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 inline-block"
-                            >
-                              צפה בביקורות בגוגל
-                            </a>
+                  <a
+                    href="https://maps.app.goo.gl/up9BSbr8ZhbbLtbe7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-[#D1A055] hover:bg-[#bf9144] text-white font-semibold py-2 px-6 rounded-full transition-all duration-300 inline-block"
+                  >
+                    צפה בביקורות בגוגל
+                  </a>
                            </div>
                          </div>
                        </div>
@@ -166,7 +166,7 @@ export default function RatingSystem() {
                                href="https://maps.app.goo.gl/up9BSbr8ZhbbLtbe7"
                                target="_blank"
                                rel="noopener noreferrer"
-                               className="group inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl"
+                               className="group inline-flex items-center gap-3 bg-[#D1A055] hover:bg-[#bf9144] text-white font-bold py-4 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
                              >
                                <span className="text-2xl">⭐</span>
                                <span>דרג אותנו בגוגל</span>
@@ -207,7 +207,7 @@ export default function RatingSystem() {
                     href="https://maps.app.goo.gl/up9BSbr8ZhbbLtbe7"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 inline-block mx-2 transform hover:scale-105"
+                    className="bg-[#D1A055] hover:bg-[#bf9144] text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 inline-block mx-2"
                   >
                     צפה בביקורות בגוגל
                   </a>
@@ -227,7 +227,7 @@ export default function RatingSystem() {
                     href="https://maps.app.goo.gl/up9BSbr8ZhbbLtbe7"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 inline-block mx-2 transform hover:scale-105"
+                    className="bg-[#D1A055] hover:bg-[#bf9144] text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 inline-block mx-2"
                   >
                     צפה בביקורות בגוגל
                   </a>
@@ -282,7 +282,7 @@ export default function RatingSystem() {
                   <div className="text-center pt-6">
                     <button
                       onClick={() => setShowAllReviews(!showAllReviews)}
-                      className="group relative inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                      className="group relative inline-flex items-center gap-2 bg-[#D1A055] hover:bg-[#bf9144] text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
                     >
                       <span className="relative z-10">
                         {showAllReviews ? 'הצג פחות ביקורות' : `הצג עוד ביקורות (${reviewsWithText.length - 3})`}

@@ -63,12 +63,12 @@ export default function Services() {
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-200 flex flex-col"
+              className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100 flex flex-col"
               role="listitem"
             >
-              <div className={`${service.headerColor} p-8 flex flex-col items-center`}>
+              <div className="p-8 flex flex-col items-center bg-gray-50">
                 <div className="text-5xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-bold text-white text-center">
+                <h3 className="text-xl font-bold text-gray-900 text-center">
                   {service.title}
                 </h3>
               </div>
@@ -81,7 +81,7 @@ export default function Services() {
                 <ul className="space-y-3 flex-1">
                   {service.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-start justify-center">
-                      <span className="text-green-500 mr-3 mt-1 text-xl flex-shrink-0">✓</span>
+                      <span className="text-[#D1A055] mr-3 mt-1 text-xl flex-shrink-0">✓</span>
                       <span className="text-gray-700 text-center">{feature}</span>
                     </li>
                   ))}
@@ -90,7 +90,7 @@ export default function Services() {
                 <div className="mt-6">
                   <a
                     href="#contact"
-                    className={`w-full ${service.buttonColor} text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 block text-center`}
+                    className="w-full bg-[#D1A055] hover:bg-[#bf9144] text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 block text-center"
                   >
                     בואו נתחיל
                   </a>

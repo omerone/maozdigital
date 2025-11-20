@@ -162,11 +162,13 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 bg-[var(--accent-primary)] hover:bg-[#bf9144] text-white font-semibold py-3 px-6 rounded-full transition-colors duration-200 text-center;
+    @apply inline-flex items-center justify-center gap-2 bg-[#D1A055] hover:bg-[#bf9144] text-white font-semibold py-4 px-10 rounded-full transition-colors duration-200 text-center;
     min-height: 44px;
     /* מינימום 44px לנגישות מגע */
     touch-action: manipulation;
     /* שיפור ביצועים במגע */
+    border-radius: 9999px;
+    /* עיצוב pill-shaped מושלם */
   }
 
   .section-padding {
