@@ -3,14 +3,16 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    background: var(--background);
+    min-height: 100%;
   }
-  
+
   /* Accessibility improvements */
   *:focus {
     outline: 2px solid #3b82f6;
     outline-offset: 2px;
   }
-  
+
   /* Skip to content link */
   .skip-link {
     position: absolute;
@@ -22,11 +24,11 @@
     text-decoration: none;
     z-index: 1000;
   }
-  
+
   .skip-link:focus {
     top: 6px;
   }
-  
+
   /* Reduced motion support */
   @media (prefers-reduced-motion: reduce) {
     * {
@@ -41,40 +43,40 @@
     --tw-bg-opacity: 1;
     --tw-text-opacity: 1;
   }
-  
+
   .high-contrast * {
     background-color: white !important;
     color: black !important;
     border-color: black !important;
   }
-  
+
   .high-contrast .bg-gradient-to-r,
   .high-contrast .bg-gradient-to-br,
   .high-contrast .bg-gradient-to-t {
     background: white !important;
     color: black !important;
   }
-  
+
   .large-text {
     font-size: 1.2em;
   }
-  
+
   .large-text h1 {
     font-size: 3rem;
   }
-  
+
   .large-text h2 {
     font-size: 2.5rem;
   }
-  
+
   .large-text h3 {
     font-size: 2rem;
   }
-  
+
   .large-text p {
     font-size: 1.25rem;
   }
-  
+
   .large-text button,
   .large-text input,
   .large-text select,
@@ -82,22 +84,25 @@
     font-size: 1.1rem;
     padding: 0.75rem 1rem;
   }
-  
+
   .reduced-motion * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  
+
   .focus-visible *:focus {
     outline: 3px solid #3b82f6 !important;
     outline-offset: 2px !important;
   }
-  
+
   :root {
-    --background: #ffffff;
-    --foreground: #171717;
+    --background: #f8f6f1;
+    --foreground: #1e1f24;
+    --accent-primary: #d4a65a;
+    --accent-secondary: #8696a7;
+    --surface: #ffffff;
   }
 
   @theme inline {
@@ -109,8 +114,26 @@
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --background: #0a0a0a;
-      --foreground: #ededed;
+      --background: #f8f6f1;
+      --foreground: #1e1f24;
+      --surface: #ffffff;
+      --accent-primary: #d4a65a;
+      --accent-secondary: #8696a7;
+    }
+
+    body {
+      background: var(--background);
+      color: var(--foreground);
+      color-scheme: light;
+    }
+
+    .glass-panel,
+    .btn-primary,
+    .container-custom,
+    section,
+    header,
+    footer {
+      background-color: transparent;
     }
   }
 
@@ -121,47 +144,66 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: transparent;
+    color-scheme: light;
+    min-height: 100%;
+  }
+
+  html.admin-edit-mode [data-editable="true"],
+  html.admin-edit-mode [data-editable-field="true"] {
+    transition: box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+
+  html.admin-edit-mode [data-editable="true"]:hover,
+  html.admin-edit-mode [data-editable-field="true"]:hover {
+    box-shadow: inset 0 0 0 1px rgba(212, 166, 90, 0.45);
+    background-color: rgba(212, 166, 90, 0.08);
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105;
-    min-height: 44px; /* מינימום 44px לנגישות מגע */
-    touch-action: manipulation; /* שיפור ביצועים במגע */
+    @apply inline-flex items-center justify-center gap-2 bg-[var(--accent-primary)] hover:bg-[#bf9144] text-white font-semibold py-3 px-6 rounded-full transition-colors duration-200 text-center;
+    min-height: 44px;
+    /* מינימום 44px לנגישות מגע */
+    touch-action: manipulation;
+    /* שיפור ביצועים במגע */
   }
-  
-  .card {
-    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300;
-  }
-  
+
   .section-padding {
-    @apply py-20;
+    @apply py-20 md:py-24;
   }
-  
+
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
-  
+
+  .glass-panel {
+    @apply bg-white shadow-[0_10px_30px_rgba(15, 23, 42, 0.05)] border border-[#e7e4dc];
+  }
+
   /* שיפורים לנייד */
   @media (max-width: 768px) {
     .btn-primary {
       @apply py-4 px-8 text-lg;
       min-height: 48px;
     }
-    
-    .card {
-      @apply mx-2;
-    }
   }
-  
+
   /* שיפור אינטראקציות מגע */
-  button, a, input, select, textarea {
+  button,
+  a,
+  input,
+  select,
+  textarea {
     touch-action: manipulation;
   }
-  
+
   /* הסרת highlight במגע */
   * {
     -webkit-tap-highlight-color: transparent;
+  }
+
+  .rtl * {
+    direction: rtl;
   }
 }
